@@ -1,0 +1,16 @@
+.masonry__container {
+	padding: 1.25rem;
+}
+
+.masonry__grid {
+	position: relative;
+    margin-left: -.625rem;
+    margin-right: -.625rem;
+    margin-top: -.625rem;
+}
+
+.masonry__item {
+	padding: .625rem;
+	position: absolute;
+	transition: left 0.2s ease-out, top 0.2s ease-out;
+}

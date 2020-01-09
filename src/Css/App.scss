@@ -1,0 +1,17 @@
+@import "./Vars";
+@import "~bulma/bulma.sass";
+
+.item__image-cover {
+    background-color: pink;
+    position: relative;
+}
+
+.item__image-cover img {
+    display: block;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+}
