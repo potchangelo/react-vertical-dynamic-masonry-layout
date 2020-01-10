@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Masonry, MasonryItem } from './Layouts';
-import { sampleData } from './Data'
+import { sampleData } from './Data';
 import './Css/App.scss';
 
 function App() {

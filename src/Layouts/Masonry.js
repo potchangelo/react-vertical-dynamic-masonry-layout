@@ -4,24 +4,27 @@ import './Css/Masonry.scss';
 function Masonry(props) {
     // Props & States
     const { breakpointsArray, children } = props;
-    const [columns, setColumns] = useState(1);
+    const [width, setWidth] = useState(0);
+    const [columns, setColumns] = useState(3);
     const [columnsHeightArray, setColumnsHeightArray] = useState([]);
     const [stylesArray, setStylesArray] = useState([]);
     const masonryGridRef = useRef(null);
+    let layoutTimer = useRef(null);
 
     // Effects
     useEffect(() => {
-        if ( children.length > 0 ) setLayout();
+        setWidth(nextWidth());
+        scheduleSetLayout();
         window.addEventListener('resize', onResize);
         return () => window.removeEventListener('resize', onResize);
     }, []);
 
+    useEffect(() => scheduleSetLayout(), [width]);
+
     // Functions
     function onResize() {
-        const _nextColumns = nextColumns();
-        if (columns !== _nextColumns) {
-            setLayout();
-        }
+        setWidth(nextWidth());
+        //setColumns(nextColumns())
     }
 
     function nextWidth() {
@@ -32,6 +35,7 @@ function Masonry(props) {
     function nextColumns() {
         const _nextWidth = nextWidth();
 
+        // Find columns from breakpoints
         let _nextColumns = 1;
         for (const breakpoint of breakpointsArray) {
             if (_nextWidth <= breakpoint.minWidth) break;
@@ -40,10 +44,15 @@ function Masonry(props) {
 
         return _nextColumns
     }
+    function scheduleSetLayout() {
+        clearTimeout(layoutTimer);
+        layoutTimer = setTimeout(() => {
+            setLayout();
+        }, 100);
+    }
 
     function setLayout() {
         const _nextColumns = nextColumns();
-        console.log(`col = ${columns}, ncol = ${_nextColumns}`)
 
         // Init heights array
         let columnsHeightArray = new Array(_nextColumns).fill().map(u => 0); 
@@ -63,7 +72,7 @@ function Masonry(props) {
             const minHeight = Math.min(...columnsHeightArray);
             top = minHeight;
 
-            // Update height to selected column
+            // Add height to selected column
             columnsHeightArray[minHeightIndex] += child.offsetHeight;
 
             return {
