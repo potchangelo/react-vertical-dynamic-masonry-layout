@@ -1,9 +1,13 @@
 import React from 'react';
 
 function MasonryItem(props) {
-    const { style, children } = props;
+    const { isLoading, style, children } = props;
+    let _class = "masonry__item";
+    if (isLoading === true) {
+        _class += " is-loading";
+    }
     return (
-        <div className="masonry__item" style={style}>
+        <div className={_class} style={style}>
             <div className="masonry__item-content">
                 { children }
             </div>

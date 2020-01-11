@@ -2,29 +2,31 @@ import React, { useEffect, useState, useRef } from 'react';
 import './Css/Masonry.scss';
 
 function Masonry(props) {
-    // Props & States
-    const { breakpointsArray, children } = props;
+    // Vars
+    const { extraClass, breakpointsArray, children } = props;
     const [width, setWidth] = useState(0);
     const [columns, setColumns] = useState(3);
     const [columnsHeightArray, setColumnsHeightArray] = useState([]);
     const [stylesArray, setStylesArray] = useState([]);
     const masonryGridRef = useRef(null);
-    let layoutTimer = useRef(null);
+    const layoutTimer = useRef(null);
 
     // Effects
     useEffect(() => {
-        setWidth(nextWidth());
-        scheduleSetLayout();
+        onResize();
+        setTimeout(() => {
+            setLayout();
+        }, 10);
         window.addEventListener('resize', onResize);
         return () => window.removeEventListener('resize', onResize);
     }, []);
 
-    useEffect(() => scheduleSetLayout(), [width]);
+    useEffect(() => scheduleSetLayout(300), [width, columns, children]);
 
     // Functions
     function onResize() {
         setWidth(nextWidth());
-        //setColumns(nextColumns())
+        setColumns(nextColumns());
     }
 
     function nextWidth() {
@@ -44,36 +46,38 @@ function Masonry(props) {
 
         return _nextColumns
     }
-    function scheduleSetLayout() {
-        clearTimeout(layoutTimer);
-        layoutTimer = setTimeout(() => {
+
+    function scheduleSetLayout(delay) {
+        clearTimeout(layoutTimer.current);
+        layoutTimer.current = setTimeout(() => {
             setLayout();
-        }, 100);
+        }, delay);
     }
 
     function setLayout() {
+        console.log('set layout')
         const _nextColumns = nextColumns();
 
         // Init heights array
-        let columnsHeightArray = new Array(_nextColumns).fill().map(u => 0); 
+        let _columnsHeightArray = new Array(_nextColumns).fill().map(_ => 0); 
 
         // Get masonry child nodes from its ref
         const { childNodes } = masonryGridRef.current;
 
         // Build masonry items data
-        const stylesArray = Array.from(childNodes).map( (child, _) => {
+        const _stylesArray = Array.from(childNodes).map( (child, _) => {
             // Left
             let left = 0;
-            const minHeightIndex = columnsHeightArray.indexOf(Math.min(...columnsHeightArray));
-            left = minHeightIndex / columnsHeightArray.length * 100;
+            const minHeightIndex = _columnsHeightArray.indexOf(Math.min(..._columnsHeightArray));
+            left = minHeightIndex / _columnsHeightArray.length * 100;
 
             // Top
             let top = 0;
-            const minHeight = Math.min(...columnsHeightArray);
+            const minHeight = Math.min(..._columnsHeightArray);
             top = minHeight;
 
             // Add height to selected column
-            columnsHeightArray[minHeightIndex] += child.offsetHeight;
+            _columnsHeightArray[minHeightIndex] += child.getBoundingClientRect().height;
 
             return {
                 left: `${left}%`,
@@ -81,26 +85,29 @@ function Masonry(props) {
             };
         });
 
-        setColumns(_nextColumns);
-        setColumnsHeightArray(columnsHeightArray);
-        setStylesArray(stylesArray);
+        setColumnsHeightArray(_columnsHeightArray);
+        setStylesArray(_stylesArray);
     }
 
     // Elements
+    let ctnClass = "masonry__container";
+    if (extraClass !== null) {
+        ctnClass += ` ${extraClass}`;
+    }
     const gridStyles = { height: `${Math.max(...columnsHeightArray)}px` };
     const itemWidth = 100 / columns;
 
     return (
-        <div className="masonry__container">
+        <div className={ctnClass}>
             <div className="masonry__grid" ref={masonryGridRef} style={gridStyles}>
                 {
                     React.Children.map(children, (child, index) => {
-                        let itemStyles = { width: `${itemWidth}%` };
                         if (index < stylesArray.length) {
                             const style = stylesArray[index];
-                            itemStyles = { ...itemStyles, ...style };
+                            const itemStyles = { ...{ width: `${itemWidth}%` }, ...style };
+                            return React.cloneElement(child, { key: index, style: itemStyles });
                         }
-                        return React.cloneElement(child, { key: index, style: itemStyles });
+                        return React.cloneElement(child, { key: index, isLoading: true });
                     })
                 }
             </div>

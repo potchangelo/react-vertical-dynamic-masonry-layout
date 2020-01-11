@@ -1,6 +1,20 @@
 @import "./Vars";
 @import "~bulma/bulma.sass";
 
+.masonry__container--gap {
+    padding: 20px;
+}
+
+.masonry__container--gap .masonry__grid {
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-top: -10px;
+}
+
+.masonry__container--gap .masonry__item {
+	padding: 10px;
+}
+
 .item__image-cover {
     background-color: pink;
     position: relative;
@@ -14,4 +28,13 @@
     right: 0px;
     top: 0px;
     bottom: 0px;
+}
+
+.item__text-cover {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.item__text-cover .title {
+    margin-bottom: 12px;
 }
