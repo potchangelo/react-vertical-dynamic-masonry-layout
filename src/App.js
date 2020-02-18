@@ -8,10 +8,11 @@ function App() {
 	const [activeTab, setActiveTab] = useState('image-text');
 	const [dataArray, setDataArray] = useState([]);
 	const tabsArray = [
-		{ id: 'image-text', title: 'Image and Text' }, 
-		{ id: 'image', title: 'Image' }, 
-		{ id: 'text', title: 'Text' }, 
-		{ id: 'image-no-gap', title: 'Image without gap' }
+		{ id: 'image-text', title: 'Image and text' },
+		{ id: 'image', title: 'Image' },
+		{ id: 'text', title: 'Text' },
+		{ id: 'image-no-gap', title: 'Image without gap' },
+		{ id: 'image-text-append', title: 'With load more' }
 	];
 	const breakpointsArray = [
 		{ items: 2, minWidth: 0 },
@@ -21,7 +22,7 @@ function App() {
 	]
 
 	// Effects
-	useEffect(() => setDataArray(sampleData()) , []);
+	useEffect(() => setDataArray(sampleData()), []);
 
 	// Functions
 	function onTabClick(e, id) {
@@ -29,14 +30,22 @@ function App() {
 		setActiveTab(id);
 	}
 
+	function onLoadMoreClick() {
+		setDataArray(prevArray => prevArray.concat(sampleData()));
+	}
+
 	// Elements
 	const tabsElements = tabsArray.map(item => {
-		let _class = '';
-		if (activeTab === item.id) _class += 'is-active';
+		let _class = 'button is-info';
+		if (activeTab !== item.id) _class += ' is-outlined';
 		return (
-			<li key={item.id} className={_class}>
-				<a href={`#${item.id}`} onClick={(e) => onTabClick(e, item.id)}>{item.title}</a>
-			</li>
+			<a 
+				key={item.id} 
+				className={_class} 
+				href={`#${item.id}`} 
+				onClick={(e) => onTabClick(e, item.id)} >
+				{item.title}
+			</a>
 		)
 	});
 
@@ -46,7 +55,7 @@ function App() {
 		const style = { paddingBottom: `${paddingBottom}%` };
 
 		let element = null;
-		if (activeTab === 'image-text') {
+		if (activeTab === 'image-text' || activeTab === 'image-text-append') {
 			element = (
 				<>
 					<div className="item__image-cover" style={style}>
@@ -77,28 +86,45 @@ function App() {
 
 		return (
 			<MasonryItem key={index}>
-				{ element }
+				{element}
 			</MasonryItem>
 		);
 	});
+
+	let loadMoreElement = null;
+	if (activeTab === 'image-text-append') {
+		loadMoreElement = (
+			<section className="section">
+				<div className="container content has-text-centered">
+					<button
+						className="button is-dark"
+						type="button"
+						onClick={onLoadMoreClick}>
+						Load more
+					</button>
+				</div>
+			</section>
+		);
+	}
 
 	let masonryClass = '';
 	if (activeTab !== 'image-no-gap') masonryClass += 'masonry__container--gap';
 
 	return (
 		<div className="app">
-			<div className="container content">
-				<br />
-				<h2 className="title is-size-2 has-text-centered">Masonry</h2>
-			</div>
-			<div className="tabs is-centered">
-				<ul>
-					{ tabsElements }
-				</ul>
-			</div>
+			<section className="section">
+				<div className="container content">
+					<h2 className="title is-size-2 has-text-centered">Pinterest Layout</h2>
+				</div>
+				<div className="buttons is-centered">
+					{tabsElements}
+				</div>
+			</section>
+			
 			<Masonry extraClass={masonryClass} breakpointsArray={breakpointsArray}>
-				{ dataElements }
+				{dataElements}
 			</Masonry>
+			{loadMoreElement}
 		</div>
 	);
 }

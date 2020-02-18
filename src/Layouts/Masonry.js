@@ -6,6 +6,7 @@ function Masonry(props) {
     const { extraClass, breakpointsArray, children } = props;
     const [width, setWidth] = useState(0);
     const [columns, setColumns] = useState(3);
+    const [childCount, setChildCount] = useState(0);
     const [columnsHeightArray, setColumnsHeightArray] = useState([]);
     const [stylesArray, setStylesArray] = useState([]);
     const masonryGridRef = useRef(null);
@@ -14,14 +15,14 @@ function Masonry(props) {
     // Effects
     useEffect(() => {
         onResize();
-        setTimeout(() => {
-            setLayout();
-        }, 10);
         window.addEventListener('resize', onResize);
         return () => window.removeEventListener('resize', onResize);
     }, []);
 
-    useEffect(() => scheduleSetLayout(300), [width, columns, children]);
+    useEffect(() => {
+        if (children.length !== childCount) scheduleSetLayout(300, true);
+        else scheduleSetLayout(300);
+    }, [width, columns, children, childCount]);
 
     // Functions
     function onResize() {
@@ -30,7 +31,7 @@ function Masonry(props) {
     }
 
     function nextWidth() {
-        if ( masonryGridRef.current === null ) return 1;
+        if (masonryGridRef.current === null) return 1;
         return masonryGridRef.current.offsetWidth;
     }
 
@@ -47,25 +48,25 @@ function Masonry(props) {
         return _nextColumns
     }
 
-    function scheduleSetLayout(delay) {
+    function scheduleSetLayout(delay, isUpdateChild = false) {
         clearTimeout(layoutTimer.current);
         layoutTimer.current = setTimeout(() => {
-            setLayout();
+            setLayout(isUpdateChild);
         }, delay);
     }
 
-    function setLayout() {
+    function setLayout(isUpdateChild = false) {
         console.log('set layout')
         const _nextColumns = nextColumns();
 
         // Init heights array
-        let _columnsHeightArray = new Array(_nextColumns).fill().map(_ => 0); 
+        let _columnsHeightArray = new Array(_nextColumns).fill().map(_ => 0);
 
         // Get masonry child nodes from its ref
         const { childNodes } = masonryGridRef.current;
 
         // Build masonry items data
-        const _stylesArray = Array.from(childNodes).map( (child, _) => {
+        const _stylesArray = Array.from(childNodes).map((child, _) => {
             // Left
             let left = 0;
             const minHeightIndex = _columnsHeightArray.indexOf(Math.min(..._columnsHeightArray));
@@ -79,14 +80,19 @@ function Masonry(props) {
             // Add height to selected column
             _columnsHeightArray[minHeightIndex] += child.getBoundingClientRect().height;
 
-            return {
+            // Styles, set opacity if needed
+            let stylesObj = {
                 left: `${left}%`,
                 top: `${top}px`
             };
+            if (isUpdateChild === true) stylesObj.opacity = 0;
+
+            return stylesObj;
         });
 
         setColumnsHeightArray(_columnsHeightArray);
         setStylesArray(_stylesArray);
+        if (isUpdateChild === true) setChildCount(childNodes.length);
     }
 
     // Elements

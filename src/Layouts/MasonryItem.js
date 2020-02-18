@@ -9,7 +9,7 @@ function MasonryItem(props) {
     return (
         <div className={_class} style={style}>
             <div className="masonry__item-content">
-                { children }
+                {children}
             </div>
         </div>
     );
