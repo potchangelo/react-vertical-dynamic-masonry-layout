@@ -3,54 +3,85 @@ import { Masonry, MasonryItem } from './Layouts';
 import { sampleData } from './Data';
 import './Css/App.scss';
 
+const tabArray = [
+	{ id: 'image-text', title: 'Image and text' },
+	{ id: 'image', title: 'Image' },
+	{ id: 'text', title: 'Text' },
+	{ id: 'image-no-gap', title: 'Image without gap' },
+	{ id: 'image-text-append', title: 'With load more' }
+];
+const breakpointArray = [
+	{ items: 2, minWidth: 0 },
+	{ items: 3, minWidth: 500 },
+	{ items: 4, minWidth: 750 },
+	{ items: 5, minWidth: 1000 }
+];
+
 function App() {
-	// Vars
+	// States
 	const [activeTab, setActiveTab] = useState('image-text');
 	const [dataArray, setDataArray] = useState([]);
-	const tabsArray = [
-		{ id: 'image-text', title: 'Image and text' },
-		{ id: 'image', title: 'Image' },
-		{ id: 'text', title: 'Text' },
-		{ id: 'image-no-gap', title: 'Image without gap' },
-		{ id: 'image-text-append', title: 'With load more' }
-	];
-	const breakpointsArray = [
-		{ items: 2, minWidth: 0 },
-		{ items: 3, minWidth: 500 },
-		{ items: 4, minWidth: 750 },
-		{ items: 5, minWidth: 1000 }
-	]
-
-	// Effects
-	useEffect(() => setDataArray(sampleData()), []);
-
+	const [isLoading, setIsLoading] = useState(true); 
+	
 	// Functions
 	function onTabClick(e, id) {
 		e.preventDefault();
 		setActiveTab(id);
+		setDataArray([]);
+		setIsLoading(true);
+		scheduleSetDataArray(sampleData).then(_ => scheduleSetIsLoading(false));
 	}
 
 	function onLoadMoreClick() {
-		setDataArray(prevArray => prevArray.concat(sampleData()));
+		setIsLoading(true);
+		scheduleSetDataArray(sampleData, { isAppend: true }).then(_ => scheduleSetIsLoading(false));
 	}
 
+	function scheduleSetDataArray(array, options = {}) {
+		const _options = {
+			delay: options.delay || 1500,
+			isAppend: options.isAppend || false
+		};
+		return new Promise(resolve => {
+			setTimeout(() => {
+				if (_options.isAppend) setDataArray(prevArray => prevArray.concat(array));
+				else setDataArray(array);
+				resolve({ status: 'DONE' });
+			}, _options.delay);
+		});
+	}
+
+	function scheduleSetIsLoading(result, delay = 310) {
+		return new Promise(resolve => {
+			setTimeout(() => {
+				setIsLoading(result);
+				resolve({ status: 'DONE' });
+			}, delay);
+		});
+	}
+
+	// Effects
+	useEffect(() => {
+		scheduleSetDataArray(sampleData).then(_ => scheduleSetIsLoading(false));
+	}, []);
+
 	// Elements
-	const tabsElements = tabsArray.map(item => {
-		let _class = 'button is-info';
-		if (activeTab !== item.id) _class += ' is-outlined';
+	const tabElements = tabArray.map(tab => {
+		let elementClass = 'button is-info';
+		if (activeTab !== tab.id) elementClass += ' is-outlined';
 		return (
-			<a 
-				key={item.id} 
-				className={_class} 
-				href={`#${item.id}`} 
-				onClick={(e) => onTabClick(e, item.id)} >
-				{item.title}
+			<a
+				key={tab.id}
+				className={elementClass}
+				href={`#${tab.id}`}
+				onClick={e => onTabClick(e, tab.id)} >
+				{tab.title}
 			</a>
 		)
 	});
 
-	const dataElements = dataArray.map((item, index) => {
-		const { title, description, imgUrl, imgWidth, imgHeight } = item;
+	const dataElements = dataArray.map((data, index) => {
+		const { title, description, imgUrl, imgWidth, imgHeight } = data;
 		const paddingBottom = imgHeight / imgWidth * 100;
 		const style = { paddingBottom: `${paddingBottom}%` };
 
@@ -92,19 +123,32 @@ function App() {
 	});
 
 	let loadMoreElement = null;
-	if (activeTab === 'image-text-append') {
-		loadMoreElement = (
-			<section className="section">
-				<div className="container content has-text-centered">
-					<button
-						className="button is-dark"
-						type="button"
-						onClick={onLoadMoreClick}>
-						Load more
-					</button>
-				</div>
-			</section>
-		);
+	let loadingElement = (
+		<section className="section">
+			<div className="container content has-text-centered">
+				<span className="icon is-medium">
+					<i className="fas fa-spinner fa-2x fa-spin"></i>
+				</span>
+			</div>
+		</section>
+	);
+
+	if (!isLoading) {
+		if (activeTab === 'image-text-append' && dataArray.length > 0) {
+			loadMoreElement = (
+				<section className="section">
+					<div className="container content has-text-centered">
+						<button
+							className="button is-dark"
+							type="button"
+							onClick={onLoadMoreClick}>
+							Load more
+						</button>
+					</div>
+				</section>
+			);
+		}
+		loadingElement = null;
 	}
 
 	let masonryClass = '';
@@ -117,14 +161,14 @@ function App() {
 					<h2 className="title is-size-2 has-text-centered">Pinterest Layout</h2>
 				</div>
 				<div className="buttons is-centered">
-					{tabsElements}
+					{tabElements}
 				</div>
 			</section>
-			
-			<Masonry extraClass={masonryClass} breakpointsArray={breakpointsArray}>
+			<Masonry extraClass={masonryClass} breakpointArray={breakpointArray}>
 				{dataElements}
 			</Masonry>
 			{loadMoreElement}
+			{loadingElement}
 		</div>
 	);
 }
