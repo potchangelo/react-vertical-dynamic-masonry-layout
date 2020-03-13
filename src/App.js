@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Masonry, MasonryItem } from './Layouts';
 import { sampleData } from './Data';
 import './Css/App.scss';
+import Logo from './Images/Logo64.png';
 
 const tabArray = [
 	{ id: 'image-text', title: 'Image and text' },
@@ -67,8 +68,8 @@ function App() {
 
 	// Elements
 	const tabElements = tabArray.map(tab => {
-		let elementClass = 'button is-info';
-		if (activeTab !== tab.id) elementClass += ' is-outlined';
+		let elementClass = 'header-tabs__item';
+		if (activeTab === tab.id) elementClass += ' is-selected';
 		return (
 			<a
 				key={tab.id}
@@ -156,14 +157,20 @@ function App() {
 
 	return (
 		<div className="app">
-			<section className="section">
-				<div className="container content">
-					<h2 className="title is-size-2 has-text-centered">Pinterest Layout</h2>
+			<header className="header-nav">
+				<a className="header-nav__link" onClick={e => onTabClick(e, 'image-text')}>
+					<h1 className="title is-5">Pinterest Layout</h1>
+					<h3 className="subtitle is-7">by Zinglecode</h3>
+					<img className="header-nav__logo" src={Logo} alt="zinglecode" />
+				</a>
+			</header>
+			<header className="header-tabs">
+				<div className="header-tabs__scroll-area">
+					<div className="header-tabs__items">
+						{tabElements}
+					</div>
 				</div>
-				<div className="buttons is-centered">
-					{tabElements}
-				</div>
-			</section>
+			</header>
 			<Masonry extraClass={masonryClass} breakpointArray={breakpointArray}>
 				{dataElements}
 			</Masonry>

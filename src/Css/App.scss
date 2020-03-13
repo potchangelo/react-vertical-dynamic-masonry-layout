@@ -1,6 +1,63 @@
 @import "./Vars";
 @import "~bulma/bulma.sass";
 
+.header-nav {
+    border-bottom: 1px solid $grey-lighter;
+    height: 70px;
+}
+
+.header-nav__link {
+    display: inline-block;
+    height: 100%;
+    padding: 14px 16px;
+    padding-left: 60px;
+}
+
+.header-nav__logo {
+    position: absolute;
+    left: 14px;
+    top: 20px;
+    width: 32px;
+}
+
+.header-tabs {
+    border-bottom: 1px solid $grey-lighter;
+    height: 64px;
+    overflow: hidden;
+}
+
+.header-tabs__scroll-area {
+    height: calc(100% + 15px);
+    overflow-x: scroll;
+}
+
+.header-tabs__items {
+    display: flex;
+    align-items: end;
+    width: max-content;
+    height: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.header-tabs__item {
+    color: $grey;
+    border-bottom: 2px solid transparent;
+    font-weight: $weight-bold;
+    display: inline-block;
+    padding: 14px 0px;
+    white-space: nowrap;
+
+    &:not(:last-child) {
+        margin-right: 20px;
+    }
+
+    &.is-selected {
+        color: $black-bis;
+        border-bottom: 2px solid $black-bis;
+    }
+}
+
 .masonry__container--gap {
     padding: 20px;
 }
