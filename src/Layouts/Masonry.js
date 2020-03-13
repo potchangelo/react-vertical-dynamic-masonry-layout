@@ -14,31 +14,33 @@ function Masonry(props) {
         breakpointArray = defaultBreakpointArray,
         children 
     } = props;
-    const [columnHeightArray, setColumnsHeightArray] = useState([]);
-    const [styleArray, setStylesArray] = useState([]);
+    const [columnHeightArray, setColumnHeightArray] = useState([]);
+    const [styleArray, setStyleArray] = useState([]);
     const masonryGridRef = useRef(null);
-    const layoutTimer = useRef(null);
+    const layoutTimerRef = useRef(null);
+    const layoutStatusRef = useRef('done'); // restart, update, done
 
     // Functions
-    const getNextColumns = useCallback(() => {
+    function getNextColumns(_breakpointArray) {
         // Get width
         if (masonryGridRef.current === null) return 1;
         const nextWidth = masonryGridRef.current.offsetWidth;
 
         // Get columns
         let nextColumns = 1;
-        breakpointArray.forEach(breakpoint => {
+        _breakpointArray.forEach(breakpoint => {
             if (nextWidth <= breakpoint.minWidth) return;
             nextColumns = breakpoint.items;
         });
         return nextColumns;
-    }, [breakpointArray]);
+    }
 
-    const setLayout = useCallback((delay = 300) => {
-        clearTimeout(layoutTimer.current);
-        layoutTimer.current = setTimeout(() => {
-            console.log(styleArray.length);
-            const nextColumns = getNextColumns();
+    const setLayout = useCallback((_breakpointArray, delay = 300) => {
+        clearTimeout(layoutTimerRef.current);
+        if (layoutStatusRef.current === 'done') return;
+
+        layoutTimerRef.current = setTimeout(() => {
+            const nextColumns = getNextColumns(_breakpointArray);
 
             // Init heights array
             let nextColumnHeightArray = new Array(nextColumns).fill().map(_ => 0);
@@ -47,7 +49,7 @@ function Masonry(props) {
             const { childNodes } = masonryGridRef.current;
 
             // Build masonry items data
-            const nextStyleArray = Array.from(childNodes).map((child, index) => {
+            const nextStyleArray = Array.from(childNodes).map(child => {
                 // Left
                 let left = 0;
                 const minHeightIndex = nextColumnHeightArray.indexOf(Math.min(...nextColumnHeightArray));
@@ -61,32 +63,55 @@ function Masonry(props) {
                 // Add height to selected column
                 nextColumnHeightArray[minHeightIndex] += child.getBoundingClientRect().height;
 
-                // Styles, set opacity if needed
-                let stylesObj = {
-                    left: `${left}%`,
-                    top: `${top}px`
-                };
-                if (index >= styleArray.length) stylesObj.opacity = 0;
-
-                return stylesObj;
+                return { left: `${left}%`, top: `${top}px` };
             });
 
-            setColumnsHeightArray(nextColumnHeightArray);
-            setStylesArray(nextStyleArray);
-            // TODO: -- prevStyleArray instead of dependency
+            if (layoutStatusRef.current === 'restart') layoutStatusRef.current = 'update';
+            else if (layoutStatusRef.current === 'update') layoutStatusRef.current = 'done';
+
+            setColumnHeightArray(nextColumnHeightArray);
+            setStyleArray(prevStyleArray => {
+                return nextStyleArray.map((styles, index) => {
+                    const _styles = Object.assign({}, styles);
+                    if (index >= prevStyleArray.length) _styles.opacity = 0;
+                    return _styles;
+                });
+            });
         }, delay);
-    }, [styleArray.length, getNextColumns]);
+    }, []);
+
+    const restartLayout = useCallback((delay = 300) => {
+        if (layoutStatusRef.current !== 'update') {
+            layoutStatusRef.current = 'restart';
+            setLayout(breakpointArray, delay);
+        }
+    }, [breakpointArray, setLayout]);
+
+    const updateLayout = useCallback((delay = 0) => {
+        if (layoutStatusRef.current === 'update') {
+            setLayout(breakpointArray, delay);
+        }
+    }, [breakpointArray, setLayout]);
+
+    const onResize = useCallback(() => restartLayout(), [restartLayout]);
 
     // Effects
+    // 1. Resize browser -> restart
     useEffect(() => {
-        window.addEventListener('resize', setLayout);
-        return () => window.removeEventListener('resize', setLayout);
-    }, [setLayout]);
+        window.addEventListener('resize', onResize);
+        return () => window.removeEventListener('resize', onResize);
+    }, [onResize]);
 
+    // 2. Data changed -> restart
     useEffect(() => {
-        if (children === null) setLayout(0);
-        else setLayout();
-    }, [children, setLayout]);
+        if (children === null) restartLayout(0);
+        else restartLayout();
+    }, [breakpointArray, children, restartLayout]);
+
+    // 3. Style change -> update
+    useEffect(() => {
+        updateLayout();
+    }, [columnHeightArray, styleArray, updateLayout]);
 
     // Elements
     let ctnClass = "masonry__container";
@@ -94,7 +119,7 @@ function Masonry(props) {
         ctnClass += ` ${extraClass}`;
     }
     const gridStyles = { height: `${Math.max(...columnHeightArray)}px` };
-    const itemWidth = 100 / getNextColumns();
+    const itemWidth = 100 / columnHeightArray.length;
 
     let childElements = null;
     if (children !== null) {
