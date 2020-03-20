@@ -23,7 +23,19 @@
 .header-tabs {
     border-bottom: 1px solid $grey-lighter;
     height: 64px;
+    position: relative;
     overflow: hidden;
+
+    &:after {
+        content: '';
+        background-image: linear-gradient(to right, rgba($white, 0) 0%, rgba($white, 0.9) 75%);
+        width: 100px;
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        right: 0px;
+        pointer-events: none;
+    }
 }
 
 .header-tabs__scroll-area {
@@ -35,9 +47,9 @@
     display: flex;
     align-items: flex-end;
     width: max-content;
-    height: 100%;
+    height: 63px;
     padding-left: 20px;
-    padding-right: 20px;
+    padding-right: 100px;
 }
 
 .header-tabs__item {
