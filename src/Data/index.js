@@ -106,4 +106,17 @@ const sampleData = [
     },
 ];
 
-export { sampleData };
+const dotaHeroStatsApi = 'https://api.opendota.com/api/heroStats';
+const api = {
+    async getDotaHeroStats() {
+        try {
+            const response = await fetch(dotaHeroStatsApi);
+            return response.json();
+        }
+        catch(error) {
+            throw error;
+        }
+    }
+}
+
+export { sampleData, api };
