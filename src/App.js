@@ -1,17 +1,16 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Masonry, MasonryItem } from './Layouts';
 import { SampleElement } from './Components';
-import { sampleData, api } from './Data';
+import { sampleData } from './Data';
 import Logo from './Images/Logo64.png';
 import './Css/App.scss';
 
 const tabArray = [
-	{ pageId: 'sample-image-text', title: 'Image and text' },
-	{ pageId: 'sample-image', title: 'Image' },
-	{ pageId: 'sample-text', title: 'Text' },
-	{ pageId: 'sample-image-no-gap', title: 'Image without gap' },
-	{ pageId: 'sample-image-text-append', title: 'With load more' },
-	{ pageId: 'api-dota-hero-stats', title: 'Dota 2 heroes stats' }
+	{ pageId: 'image-text', title: 'Image and text' },
+	{ pageId: 'image', title: 'Image' },
+	{ pageId: 'text', title: 'Text' },
+	{ pageId: 'image-no-gap', title: 'Image without gap' },
+	{ pageId: 'image-text-append', title: 'With load more' }
 ];
 const breakpointArray = [
 	{ items: 2, minWidth: 0 },
@@ -22,7 +21,7 @@ const breakpointArray = [
 
 function App() {
 	// States
-	const [activePageId, setActivePageId] = useState('sample-image-text');
+	const [activePageId, setActivePageId] = useState('image-text');
 	const [dataArray, setDataArray] = useState([]);
 	const [isLoading, setIsLoading] = useState(true); 
 	
@@ -43,29 +42,12 @@ function App() {
 		}, _options.delay);
 	}, []);
 
-	async function loadApi(pageId) {
-		let apiFunction = null;
-		if (pageId === 'api-dota-hero-stats') apiFunction = api.getDotaHeroStats;
-		try {
-			const jsonArray = await apiFunction();
-			setDataArray(jsonArray);
-		}
-		catch(error) {
-			console.error(error);
-		}
-		finally {
-			setIsLoading(false);
-		}
-	}
-
 	function onTabClick(e, pageId) {
 		e.preventDefault();
 		setActivePageId(pageId);
 		setDataArray([]);
 		setIsLoading(true);
-
-		if (pageId.includes('api')) loadApi(pageId);
-		else scheduleSetDataArray(sampleData)
+		scheduleSetDataArray(sampleData)
 	}
 
 	function onLoadMoreClick() {
@@ -93,16 +75,9 @@ function App() {
 	});
 
 	const dataElements = dataArray.map((data, index) => {
-		let element = null;
-		if (activePageId.includes('sample')) {
-			element = <SampleElement pageId={activePageId} data={data} />
-		}
-		else if (activePageId.includes('api')) {
-			// TODO
-		}
 		return (
 			<MasonryItem key={index}>
-				{element}
+				<SampleElement pageId={activePageId} data={data} />
 			</MasonryItem>
 		);
 	});
@@ -119,7 +94,7 @@ function App() {
 	);
 
 	if (!isLoading) {
-		if (activePageId === 'sample-image-text-append' && dataArray.length > 0) {
+		if (activePageId === 'image-text-append' && dataArray.length > 0) {
 			loadMoreElement = (
 				<section className="section">
 					<div className="container content has-text-centered">
@@ -137,12 +112,12 @@ function App() {
 	}
 
 	let masonryClass = '';
-	if (activePageId !== 'sample-image-no-gap') masonryClass += 'masonry__container--gap';
+	if (activePageId !== 'image-no-gap') masonryClass += 'masonry__container--gap';
 
 	return (
 		<div className="app">
 			<header className="header-nav">
-				<div className="header-nav__link" onClick={e => onTabClick(e, 'sample-image-text')}>
+				<div className="header-nav__link" onClick={e => onTabClick(e, 'image-text')}>
 					<h1 className="title is-5">Pinterest Layout</h1>
 					<h3 className="subtitle is-7">by Zinglecode</h3>
 					<img className="header-nav__logo" src={Logo} alt="zinglecode" />
