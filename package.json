@@ -1,5 +1,5 @@
 {
-  "name": "pinterest-layout",
+  "name": "react-pinterest-layout",
   "description": "React Pinterest layout by Zinglecode",
   "keywords": [
     "pinterest",
@@ -9,13 +9,13 @@
   ],
   "version": "1.0.1",
   "author": "Potchara Puttawanchai",
-  "homepage": "https://pinterest-layout.netlify.app/",
+  "homepage": "https://react-pinterest-layout.netlify.app/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/potchangelo/pinterest-layout.git"
+    "url": "https://github.com/potchangelo/react-pinterest-layout.git"
   },
   "bugs": {
-    "url": "https://github.com/potchangelo/pinterest-layout.git/issues"
+    "url": "https://github.com/potchangelo/react-pinterest-layout.git/issues"
   },
   "license": "MIT",
   "dependencies": {

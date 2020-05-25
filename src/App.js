@@ -3,7 +3,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { HeaderNav, HeaderTabs } from './Component';
-import { routeArray } from './Data';
+import { routeArray } from './Helper';
 
 function App() {
 	const routeElements = routeArray.map(route => {

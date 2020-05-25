@@ -1,5 +1,5 @@
-# Pinterest Layout by Zinglecode
+# React Pinterest Layout by Zinglecode
 
-https://pinterest-layout.netlify.com/
+https://react-pinterest-layout.netlify.app/
 
 Pinterest layout, created by React.
