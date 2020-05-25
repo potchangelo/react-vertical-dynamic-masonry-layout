@@ -1,4 +1,15 @@
-const sampleData = [
+import React from 'react';
+import { ImageText, Image, Text, ImageNoGap, ImageTextAppend } from '../Page';
+
+const routeArray = [
+    { url: '/', title: 'Image text (Home)', component: <ImageText /> },
+    { url: '/image', title: 'Image', component: <Image /> },
+    { url: '/text', title: 'Text', component: <Text /> },
+    { url: '/image-no-gap', title: 'Image no gap', component: <ImageNoGap /> },
+    { url: '/image-text-append', title: 'Image text with load more', component: <ImageTextAppend /> }
+];
+
+const samplePostArray = [
     {
         title: 'Sandwich with Boiled Egg',
         description: 'Avocado and Egg Toast',
@@ -106,4 +117,4 @@ const sampleData = [
     },
 ];
 
-export { sampleData };
+export { routeArray, samplePostArray };
