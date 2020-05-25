@@ -16,13 +16,6 @@ function Image() {
     const [isLoading, setIsLoading] = useState(true); 
 
     // Functions
-    const scheduleSetPostArray = useCallback((delay = 1500) => {
-		setTimeout(() => {
-			setPostArray(getRandomPostArray());
-			setIsLoading(false);
-		}, delay);
-    }, []);
-    
     const getRandomPostArray = useCallback(() => {
         const arr = [...samplePostArray];
         for (let i = arr.length - 1; i > 0; i--) {
@@ -31,6 +24,13 @@ function Image() {
         }
         return arr;
     }, []);
+
+    const scheduleSetPostArray = useCallback((delay = 1500) => {
+		setTimeout(() => {
+			setPostArray(getRandomPostArray());
+			setIsLoading(false);
+		}, delay);
+    }, [getRandomPostArray]);
     
     // Effects
     useEffect(() => scheduleSetPostArray(), [scheduleSetPostArray]);
