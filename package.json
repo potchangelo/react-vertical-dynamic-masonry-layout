@@ -1,15 +1,15 @@
 {
   "name": "pinterest-layout",
-  "description": "React Pinterest layout by Zinglecode",
+  "description": "Pinterest layout by React",
   "keywords": [
     "pinterest",
     "layout",
     "react",
     "bulma"
   ],
-  "version": "1.0.1",
+  "version": "1.0.0",
   "author": "Potchara Puttawanchai",
-  "homepage": "https://pinterest-layout.netlify.app/",
+  "homepage": "https://pinterest-layout.netlify.com/",
   "repository": {
     "type": "git",
     "url": "https://github.com/potchangelo/pinterest-layout.git"
@@ -20,14 +20,14 @@
   "license": "MIT",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
+    "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
-    "bulma": "^0.8.2",
-    "node-sass": "^4.14.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "bulma": "^0.8.0",
+    "node-sass": "^4.13.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.1",
+    "react-scripts": "3.3.0",
     "uuid": "^8.1.0"
   },
   "scripts": {

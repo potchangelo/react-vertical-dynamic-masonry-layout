@@ -17,15 +17,6 @@ function ImageText() {
     const [isLoading, setIsLoading] = useState(true); 
 
     // Functions
-    const getRandomPostArray = useCallback(() => {
-        const arr = [...samplePostArray];
-        for (let i = arr.length - 1; i > 0; i--) {
-            let j = Math.floor(Math.random() * (i + 1));
-            [arr[i], arr[j]] = [arr[j], arr[i]];
-        }
-        return arr;
-    }, []);
-
     const scheduleSetPostArray = useCallback((delay = 1500, isAppend = false) => {
         const randomPostArray = getRandomPostArray()
 		setTimeout(() => {
@@ -37,7 +28,16 @@ function ImageText() {
             }
 			setIsLoading(false);
 		}, delay);
-    }, [getRandomPostArray]);
+    }, []);
+    
+    const getRandomPostArray = useCallback(() => {
+        const arr = [...samplePostArray];
+        for (let i = arr.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }, []);
 
     function onLoadMoreClick() {
         setIsLoading(true);
