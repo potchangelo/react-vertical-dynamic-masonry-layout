@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 
-
 const defaultBreakpointArray = [
 	{ items: 2, minWidth: 0 },
 	{ items: 3, minWidth: 500 },
@@ -104,7 +103,7 @@ function Masonry(props) {
 
     // 2. Data changed -> restart
     useEffect(() => {
-        if (children === null) restartLayout(0);
+        if (!children) restartLayout(0);
         else restartLayout();
     }, [breakpointArray, children, restartLayout]);
 
@@ -115,18 +114,18 @@ function Masonry(props) {
 
     // Elements
     let ctnClass = "masonry__container";
-    if (extraClass !== null) {
+    if (!!extraClass) {
         ctnClass += ` ${extraClass}`;
     }
     const gridStyles = { height: `${Math.max(...columnHeightArray)}px` };
     const itemWidth = 100 / columnHeightArray.length;
 
     let childElements = null;
-    if (children !== null) {
+    if (!!children) {
         childElements = React.Children.map(children, (child, index) => {
             if (index < styleArray.length) {
                 const style = styleArray[index];
-                const itemStyles = { ...{ width: `${itemWidth}%` }, ...style };
+                const itemStyles = { width: `${itemWidth}%`, ...style };
                 return React.cloneElement(child, { key: index, style: itemStyles });
             }
             return React.cloneElement(child, { key: index, isLoading: true });
