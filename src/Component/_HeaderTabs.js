@@ -12,12 +12,7 @@ function HeaderTabs() {
   const tabElements = routeArray.map((route, index) => {
     const { url, title } = route;
     return (
-      <NavLink
-        key={`tab-${index}`}
-        to={url}
-        className={getNavClass}
-        end
-      >
+      <NavLink key={`tab-${index}`} to={url} className={getNavClass} end>
         {title}
       </NavLink>
     );
@@ -26,9 +21,7 @@ function HeaderTabs() {
   return (
     <header className="header-tabs">
       <div className="header-tabs__scroll-area">
-        <div className="header-tabs__items">
-          {tabElements}
-        </div>
+        <div className="header-tabs__items">{tabElements}</div>
       </div>
     </header>
   );

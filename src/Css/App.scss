@@ -1,117 +1,117 @@
-@import "./Vars";
-@import "~bulma/bulma.sass";
+@import './Vars';
+@import '~bulma/bulma.sass';
 
 .header-nav {
-    border-bottom: 1px solid $grey-lighter;
-    height: 70px;
+  border-bottom: 1px solid $grey-lighter;
+  height: 70px;
 }
 
 .header-nav__link {
-    display: inline-block;
-    height: 100%;
-    padding: 14px 16px;
-    padding-left: 60px;
-    cursor: pointer;
+  display: inline-block;
+  height: 100%;
+  padding: 14px 16px;
+  padding-left: 60px;
+  cursor: pointer;
 }
 
 .header-nav__logo {
-    position: absolute;
-    left: 14px;
-    top: 20px;
-    width: 32px;
+  position: absolute;
+  left: 14px;
+  top: 20px;
+  width: 32px;
 }
 
 .header-tabs {
-    border-bottom: 1px solid $grey-lighter;
-    height: 64px;
-    position: relative;
-    overflow: hidden;
+  border-bottom: 1px solid $grey-lighter;
+  height: 64px;
+  position: relative;
+  overflow: hidden;
 
-    &:after {
-        content: '';
-        background-image: linear-gradient(to right, rgba($white, 0) 0%, rgba($white, 0.9) 75%);
-        width: 100px;
-        position: absolute;
-        top: 0px;
-        bottom: 0px;
-        right: 0px;
-        pointer-events: none;
-    }
+  &:after {
+    content: '';
+    background-image: linear-gradient(to right, rgba($white, 0) 0%, rgba($white, 0.9) 75%);
+    width: 100px;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    pointer-events: none;
+  }
 }
 
 .header-tabs__scroll-area {
-    height: calc(100% + 15px);
-    overflow-x: scroll;
+  height: calc(100% + 15px);
+  overflow-x: scroll;
 }
 
 .header-tabs__items {
-    display: flex;
-    align-items: flex-end;
-    width: max-content;
-    height: 63px;
-    padding-left: 20px;
-    padding-right: 100px;
+  display: flex;
+  align-items: flex-end;
+  width: max-content;
+  height: 63px;
+  padding-left: 20px;
+  padding-right: 100px;
 }
 
 .header-tabs__item {
-    color: $grey;
-    border-bottom: 2px solid transparent;
-    font-weight: $weight-bold;
-    display: inline-block;
-    padding: 14px 0px;
-    white-space: nowrap;
+  color: $grey;
+  border-bottom: 2px solid transparent;
+  font-weight: $weight-bold;
+  display: inline-block;
+  padding: 14px 0px;
+  white-space: nowrap;
 
-    &:not(:last-child) {
-        margin-right: 20px;
-    }
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
 
-    &.is-selected {
-        color: $black-bis;
-        border-bottom: 2px solid $black-bis;
-    }
+  &.is-selected {
+    color: $black-bis;
+    border-bottom: 2px solid $black-bis;
+  }
 }
 
 .main-content {
-    background-color: $white-bis;
-    min-height: calc(100vh - 70px - 64px);
+  background-color: $white-bis;
+  min-height: calc(100vh - 70px - 64px);
 }
 
 .masonry__container--gap {
-    padding: 20px;
+  padding: 20px;
 
-    .masonry__grid {
-        margin-left: -10px;
-        margin-right: -10px;
-        margin-top: -10px;
-    }
+  .masonry__grid {
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-top: -10px;
+  }
 
-    .masonry__item {
-        padding: 10px;
-    }
+  .masonry__item {
+    padding: 10px;
+  }
 }
 
 .item__image-cover {
-    background-color: pink;
-    position: relative;
+  background-color: pink;
+  position: relative;
 
-    img {
-        display: block;
-        width: 100%;
-        position: absolute;
-        left: 0px;
-        right: 0px;
-        top: 0px;
-        bottom: 0px;
-    }
+  img {
+    display: block;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+  }
 }
 
 .item__text-cover {
-    &.tb-space {
-        padding-top: 16px;
-        padding-bottom: 16px;
-    }
+  &.tb-space {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
 
-    .title {
-        margin-bottom: 12px;
-    }
+  .title {
+    margin-bottom: 12px;
+  }
 }
