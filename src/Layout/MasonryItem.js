@@ -8,9 +8,7 @@ function MasonryItem(props) {
 
   return (
     <div className={itemClass} style={itemStyles}>
-      <div className="masonry__item-content">
-        {children}
-      </div>
+      <div className="masonry__item-content">{children}</div>
     </div>
   );
 }
