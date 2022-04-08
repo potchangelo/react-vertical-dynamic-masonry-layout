@@ -5,10 +5,10 @@ import { SectionLoading, ItemImage, ItemText } from '../Component';
 import { samplePostArray } from '../Helper';
 
 const breakpointArray = [
-  { items: 2, minWidth: 0 },
-  { items: 3, minWidth: 500 },
-  { items: 4, minWidth: 750 },
-  { items: 5, minWidth: 1000 },
+  { columns: 2, minWidth: 0, gap: 12 },
+  { columns: 3, minWidth: 500, gap: 24 },
+  { columns: 4, minWidth: 750, gap: 24 },
+  { columns: 5, minWidth: 1000, gap: 24 },
 ];
 
 function ImageText() {

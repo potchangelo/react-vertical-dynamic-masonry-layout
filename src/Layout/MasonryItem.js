@@ -1,7 +1,5 @@
-import React from 'react';
-
 function MasonryItem(props) {
-  const { isLoading, style, children } = props;
+  const { isLoading, itemStyles, children } = props;
 
   let itemClass = 'masonry__item';
   if (!!isLoading) {
@@ -9,8 +7,10 @@ function MasonryItem(props) {
   }
 
   return (
-    <div className={itemClass} style={style}>
-      <div className="masonry__item-content">{children}</div>
+    <div className={itemClass} style={itemStyles}>
+      <div className="masonry__item-content">
+        {children}
+      </div>
     </div>
   );
 }
