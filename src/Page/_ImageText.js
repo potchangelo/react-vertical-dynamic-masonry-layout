@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Masonry, MasonryItem } from '../Layout';
+import { Masonry, MasonryItem, MasonryNew } from '../Layout';
 import { SectionLoading, ItemImage, ItemText } from '../Component';
 import { samplePostArray } from '../Helper';
 
@@ -40,20 +40,38 @@ function ImageText() {
   useEffect(() => scheduleSetPostArray(), [scheduleSetPostArray]);
 
   // Elements
+  // const postElements = postArray.map(post => {
+  //   return (
+  //     <MasonryItem key={uuidv4()}>
+  //       <ItemImage post={post} />
+  //       <ItemText post={post} extraClass="tb-space" />
+  //     </MasonryItem>
+  //   );
+  // });
+
   const postElements = postArray.map(post => {
     return (
-      <MasonryItem key={uuidv4()}>
+      <div key={uuidv4()}>
         <ItemImage post={post} />
         <ItemText post={post} extraClass="tb-space" />
-      </MasonryItem>
+      </div>
     );
   });
 
+  // return (
+  //   <main className="main-content">
+  //     <Masonry breakpointArray={breakpointArray} extraClass="masonry__container--gap">
+  //       {postElements}
+  //     </Masonry>
+  //     <SectionLoading isLoading={isLoading} />
+  //   </main>
+  // );
+
   return (
     <main className="main-content">
-      <Masonry breakpointArray={breakpointArray} extraClass="masonry__container--gap">
+      <MasonryNew>
         {postElements}
-      </Masonry>
+      </MasonryNew>
       <SectionLoading isLoading={isLoading} />
     </main>
   );
