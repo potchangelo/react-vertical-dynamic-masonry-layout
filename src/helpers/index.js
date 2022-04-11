@@ -3,10 +3,10 @@ import { ImageText, Image, Text, ImageNoGap, ImageTextAppend } from '../pages';
 
 const routes = [
   { id: 'home', url: '/', title: 'Image text (Home)', component: <ImageText /> },
-  { id: 'position-image', url: '/image', title: 'Image', component: <Image /> },
-  { id: 'position-text', url: '/text', title: 'Text', component: <Text /> },
-  { id: 'position-image-no-gap', url: '/image-no-gap', title: 'Image no gap', component: <ImageNoGap /> },
-  { id: 'position-image-text-append', url: '/image-text-append', title: 'Image text with load more', component: <ImageTextAppend /> },
+  { id: 'position-image', url: 'image/', title: 'Image', component: <Image /> },
+  { id: 'position-text', url: 'text/', title: 'Text', component: <Text /> },
+  { id: 'position-image-no-gap', url: 'image-no-gap/', title: 'Image no gap', component: <ImageNoGap /> },
+  { id: 'position-image-text-append', url: 'image-text-append/', title: 'Image text with load more', component: <ImageTextAppend /> },
 ];
 
 const dynamicPosts = [
