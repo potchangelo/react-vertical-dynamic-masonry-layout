@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { routeArray } from '../Helper';
+import { routes } from '../Helper';
 
 function HeaderTabs() {
   function getNavClass(navLinkProps) {
@@ -9,10 +9,10 @@ function HeaderTabs() {
     return navClass;
   }
 
-  const tabElements = routeArray.map((route, index) => {
-    const { url, title } = route;
+  const tabElements = routes.map((route, index) => {
+    const { id, url, title } = route;
     return (
-      <NavLink key={`tab-${index}`} to={url} className={getNavClass} end>
+      <NavLink key={id} to={url} className={getNavClass} end>
         {title}
       </NavLink>
     );

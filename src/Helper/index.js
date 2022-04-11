@@ -1,15 +1,15 @@
 import React from 'react';
 import { ImageText, Image, Text, ImageNoGap, ImageTextAppend } from '../Page';
 
-const routeArray = [
-  { url: '/', title: 'Image text (Home)', component: <ImageText /> },
-  { url: '/image', title: 'Image', component: <Image /> },
-  { url: '/text', title: 'Text', component: <Text /> },
-  { url: '/image-no-gap', title: 'Image no gap', component: <ImageNoGap /> },
-  { url: '/image-text-append', title: 'Image text with load more', component: <ImageTextAppend /> },
+const routes = [
+  { id: 'home', url: '/', title: 'Image text (Home)', component: <ImageText /> },
+  { id: 'position-image', url: '/image', title: 'Image', component: <Image /> },
+  { id: 'position-text', url: '/text', title: 'Text', component: <Text /> },
+  { id: 'position-image-no-gap', url: '/image-no-gap', title: 'Image no gap', component: <ImageNoGap /> },
+  { id: 'position-image-text-append', url: '/image-text-append', title: 'Image text with load more', component: <ImageTextAppend /> },
 ];
 
-const samplePostArray = [
+const dynamicPosts = [
   {
     title: 'Sandwich with Boiled Egg',
     description: 'Avocado and Egg Toast',
@@ -136,4 +136,4 @@ const samplePostArray = [
   },
 ];
 
-export { routeArray, samplePostArray };
+export { routes, dynamicPosts };

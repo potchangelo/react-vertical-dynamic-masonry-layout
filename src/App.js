@@ -1,14 +1,13 @@
 import './Css/App.scss';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import { HeaderNav, HeaderTabs } from './Component';
-import { routeArray } from './Helper';
+import { routes } from './Helper';
 
 function App() {
-  const routeElements = routeArray.map(route => {
-    const { url, component } = route;
-    return <Route key={uuidv4()} path={url} element={component} />;
+  const routeElements = routes.map(route => {
+    const { id, url, component } = route;
+    return <Route key={id} path={url} element={component} />;
   });
 
   return (
