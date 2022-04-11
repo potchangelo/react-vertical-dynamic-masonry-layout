@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { ImageText, Image, Text, ImageNoGap, ImageTextAppend } from '../pages';
 
 const routes = [
@@ -133,6 +134,6 @@ const dynamicPosts = [
     imgWidth: 440,
     imgHeight: 308,
   },
-];
+].map(p => ({ id: uuidv4(), ...p }));
 
 export { routes, dynamicPosts };
