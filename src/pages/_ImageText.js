@@ -4,10 +4,10 @@ import { SectionLoading, ItemImage, ItemText } from '../components';
 import { dynamicPosts } from '../helpers';
 
 const breakpoints = [
-  { columns: 2, minWidth: 0, gap: 12 },
-  { columns: 3, minWidth: 500, gap: 24 },
-  { columns: 4, minWidth: 750, gap: 24 },
-  { columns: 5, minWidth: 1000, gap: 24 },
+  { columns: 2, minWidth: 0, gap: 12, outerGap: 16 },
+  { columns: 3, minWidth: 500, gap: 16, outerGap: 20 },
+  { columns: 4, minWidth: 750, gap: 20, outerGap: 20 },
+  { columns: 5, minWidth: 1000, gap: 24, outerGap: 24 },
 ];
 
 function ImageText() {
@@ -59,7 +59,7 @@ function ImageText() {
 
   return (
     <main className="main-content">
-      <Masonry breakpoints={breakpoints} extraClass="masonry__container--gap">
+      <Masonry breakpoints={breakpoints}>
         {postElements}
       </Masonry>
       <SectionLoading isLoading={isLoading} />

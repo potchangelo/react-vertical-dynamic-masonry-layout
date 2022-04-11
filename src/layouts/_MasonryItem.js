@@ -1,14 +1,16 @@
+import style from './css/masonry.module.scss';
+
 function MasonryItem(props) {
   const { isLoading, itemStyles, children } = props;
 
-  let itemClass = 'masonry__item';
+  let itemClass = style.item;
   if (!!isLoading) {
-    itemClass += ' is-loading';
+    itemClass += ` ${style.itemIsLoading}`;
   }
 
   return (
     <div className={itemClass} style={itemStyles}>
-      <div className="masonry__item-content">{children}</div>
+      <div>{children}</div>
     </div>
   );
 }

@@ -1,10 +1,12 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
+import style from './css/masonry.module.scss';
 
 /**
  * @typedef {object} breakpoint
  * @property {number} columns
  * @property {number} minWidth
- * @property {number} gap
+ * @property {number} [gap]
+ * @property {number} [outerGap]
  */
 
 // *** Todo : outer padding top left right bottom
@@ -131,7 +133,7 @@ function Masonry(props) {
   // - Attributes
   const columnCount = columnsHeights.length;
   const itemWidth = 100 / (columnCount || 1);
-  const { gap } = columnCount === 0 ? 0 : getNextBreakpoint();
+  const { gap = 0, outerGap = 0 } = getNextBreakpoint();
   const layoutHeight = columnCount === 0 ? 0 : Math.max(...columnsHeights);
   const layoutStyle = {
     height: `${layoutHeight}px`,
@@ -164,8 +166,8 @@ function Masonry(props) {
   }
 
   return (
-    <div className="masonry__container">
-      <div className="masonry__grid" ref={layoutRef} style={layoutStyle}>
+    <div style={{ padding: `${outerGap}px` }}>
+      <div className={style.layout} ref={layoutRef} style={layoutStyle}>
         {childElements}
       </div>
     </div>
