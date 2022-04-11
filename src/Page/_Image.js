@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Masonry, MasonryItem } from '../Layout';
-import { SectionLoading, ItemImage } from '../Component';
+import { SectionLoading, ItemImage } from '../components';
 import { dynamicPosts } from '../helpers';
 
 const breakpointArray = [

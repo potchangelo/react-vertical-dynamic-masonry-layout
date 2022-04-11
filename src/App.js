@@ -1,7 +1,7 @@
 import './Css/App.scss';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { HeaderNav, HeaderTabs } from './Component';
+import { HeaderNav, HeaderTabs } from './components';
 import { routes } from './helpers';
 
 function App() {
