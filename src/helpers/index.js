@@ -1,4 +1,3 @@
-import React from 'react';
 import { ImageText, Image, Text, ImageNoGap, ImageTextAppend } from '../Page';
 
 const routes = [

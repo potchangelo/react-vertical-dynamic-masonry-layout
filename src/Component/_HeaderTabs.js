@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { routes } from '../Helper';
+import { routes } from '../helpers';
 
 function HeaderTabs() {
   function getNavClass(navLinkProps) {

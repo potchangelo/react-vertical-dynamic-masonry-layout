@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Masonry, MasonryItem, MasonryNew } from '../Layout';
 import { SectionLoading, ItemImage, ItemText } from '../Component';
-import { dynamicPosts } from '../Helper';
+import { dynamicPosts } from '../helpers';
 
 const breakpointArray = [
   { columns: 2, minWidth: 0, gap: 12 },

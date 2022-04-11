@@ -2,7 +2,7 @@ import './Css/App.scss';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { HeaderNav, HeaderTabs } from './Component';
-import { routes } from './Helper';
+import { routes } from './helpers';
 
 function App() {
   const routeElements = routes.map(route => {
