@@ -1,16 +1,16 @@
-.masonry__grid {
+.layout {
   position: relative;
 }
 
-.masonry__item {
+.item {
   position: absolute;
   // transition: left 0.3s ease-out, top 0.3s ease-out, opacity 0.01s 0.31s;
 }
 
-.masonry__item.is-loading {
+.itemIsLoading {
   opacity: 0;
 }
 
-.masonry__grid-new {
-  display: grid;
-}
+// .masonry__grid-new {
+//   display: grid;
+// }
