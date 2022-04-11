@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Masonry, MasonryItem, MasonryNew } from '../layouts';
+import { Masonry, MasonryItem } from '../layouts';
 import { SectionLoading, ItemImage, ItemText } from '../components';
 import { dynamicPosts } from '../helpers';
 
-const breakpointArray = [
+const breakpoints = [
   { columns: 2, minWidth: 0, gap: 12 },
   { columns: 3, minWidth: 500, gap: 24 },
   { columns: 4, minWidth: 750, gap: 24 },
@@ -13,11 +13,11 @@ const breakpointArray = [
 
 function ImageText() {
   // State
-  const [postArray, setPostArray] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   // Functions
-  const getRandomPostArray = useCallback(() => {
+  const getRandomPosts = useCallback(() => {
     const arr = [...dynamicPosts];
     for (let i = arr.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
@@ -26,21 +26,21 @@ function ImageText() {
     return arr;
   }, []);
 
-  const scheduleSetPostArray = useCallback(
+  const scheduleSetPosts = useCallback(
     (delay = 1500) => {
       setTimeout(() => {
-        setPostArray(getRandomPostArray());
+        setPosts(getRandomPosts());
         setIsLoading(false);
       }, delay);
     },
-    [getRandomPostArray]
+    [getRandomPosts]
   );
 
   // Effects
-  useEffect(() => scheduleSetPostArray(), [scheduleSetPostArray]);
+  useEffect(() => scheduleSetPosts(), [scheduleSetPosts]);
 
   // Elements
-  const postElements = postArray.map(post => {
+  const postElements = posts.map(post => {
     return (
       <MasonryItem key={uuidv4()}>
         <ItemImage post={post} />
@@ -49,7 +49,7 @@ function ImageText() {
     );
   });
 
-  // const postElements = postArray.map(post => {
+  // const postElements = posts.map(post => {
   //   return (
   //     <div key={uuidv4()}>
   //       <ItemImage post={post} />
@@ -60,7 +60,7 @@ function ImageText() {
 
   return (
     <main className="main-content">
-      <Masonry breakpointArray={breakpointArray} extraClass="masonry__container--gap">
+      <Masonry breakpoints={breakpoints} extraClass="masonry__container--gap">
         {postElements}
       </Masonry>
       <SectionLoading isLoading={isLoading} />
