@@ -6,10 +6,9 @@ import style from './css/masonry.module.scss';
  * @property {number} columns
  * @property {number} minWidth
  * @property {number} [gap]
- * @property {number} [outerGap]
+ * @property {number|number[]} [outerGap]
  */
 
-// *** Todo : outer padding top left right bottom
 const defaultBreakpoints = [
   { columns: 1, minWidth: 0, gap: 0 },
   { columns: 2, minWidth: 600, gap: 24 },
@@ -134,6 +133,9 @@ function Masonry(props) {
   const columnCount = columnsHeights.length;
   const itemWidth = 100 / (columnCount || 1);
   const { gap = 0, outerGap = 0 } = getNextBreakpoint();
+  const containerStyle = {
+    padding: Array.isArray(outerGap) ? outerGap.map(g => `${g}px`).join(' ') : `${outerGap}px`
+  }
   const layoutHeight = columnCount === 0 ? 0 : Math.max(...columnsHeights);
   const layoutStyle = {
     height: `${layoutHeight}px`,
@@ -166,7 +168,7 @@ function Masonry(props) {
   }
 
   return (
-    <div style={{ padding: `${outerGap}px` }}>
+    <div style={containerStyle}>
       <div className={style.layout} ref={layoutRef} style={layoutStyle}>
         {childElements}
       </div>
