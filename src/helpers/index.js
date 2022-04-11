@@ -1,4 +1,4 @@
-import { ImageText, Image, Text, ImageNoGap, ImageTextAppend } from '../Page';
+import { ImageText, Image, Text, ImageNoGap, ImageTextAppend } from '../pages';
 
 const routes = [
   { id: 'home', url: '/', title: 'Image text (Home)', component: <ImageText /> },
