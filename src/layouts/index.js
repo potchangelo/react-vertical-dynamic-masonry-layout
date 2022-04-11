@@ -1,4 +1,4 @@
 import './css/masonry.scss';
-export { default as Masonry } from './Masonry';
-export { default as MasonryItem } from './MasonryItem';
-export { default as MasonryNew } from './MasonryNew';
+export { default as Masonry } from './_Masonry';
+export { default as MasonryItem } from './_MasonryItem';
+export { default as MasonryNew } from './_MasonryNew';
