@@ -76,20 +76,6 @@
   min-height: calc(100vh - 70px - 64px);
 }
 
-.masonry__container--gap {
-  padding: 20px;
-
-  .masonry__grid {
-    margin-left: -10px;
-    margin-right: -10px;
-    margin-top: -10px;
-  }
-
-  .masonry__item {
-    padding: 10px;
-  }
-}
-
 .item__image-cover {
   background-color: pink;
   position: relative;

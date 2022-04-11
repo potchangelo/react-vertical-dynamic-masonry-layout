@@ -1,23 +1,22 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { Masonry, MasonryItem } from '../layouts';
 import { SectionLoading, ItemImage } from '../components';
 import { dynamicPosts } from '../helpers';
 
-const breakpointArray = [
-  { items: 2, minWidth: 0 },
-  { items: 3, minWidth: 500 },
-  { items: 4, minWidth: 750 },
-  { items: 5, minWidth: 1000 },
+const breakpoints = [
+  { columns: 2, minWidth: 0, gap: 12, outerGap: 16 },
+  { columns: 3, minWidth: 500, gap: 16, outerGap: 20 },
+  { columns: 4, minWidth: 750, gap: 20, outerGap: [32, 20] },
+  { columns: 5, minWidth: 1000, gap: 24, outerGap: [32, 24] },
 ];
 
 function Image() {
   // State
-  const [postArray, setPostArray] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   // Functions
-  const getRandomPostArray = useCallback(() => {
+  const getRandomPosts = useCallback(() => {
     const arr = [...dynamicPosts];
     for (let i = arr.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
@@ -26,23 +25,23 @@ function Image() {
     return arr;
   }, []);
 
-  const scheduleSetPostArray = useCallback(
+  const scheduleSetPosts = useCallback(
     (delay = 1500) => {
       setTimeout(() => {
-        setPostArray(getRandomPostArray());
+        setPosts(getRandomPosts());
         setIsLoading(false);
       }, delay);
     },
-    [getRandomPostArray]
+    [getRandomPosts]
   );
 
   // Effects
-  useEffect(() => scheduleSetPostArray(), [scheduleSetPostArray]);
+  useEffect(() => scheduleSetPosts(0), [scheduleSetPosts]);
 
   // Elements
-  const postElements = postArray.map(post => {
+  const postElements = dynamicPosts.map(post => {
     return (
-      <MasonryItem key={uuidv4()}>
+      <MasonryItem key={post.id}>
         <ItemImage post={post} />
       </MasonryItem>
     );
@@ -50,7 +49,7 @@ function Image() {
 
   return (
     <main className="main-content">
-      <Masonry breakpointArray={breakpointArray} extraClass="masonry__container--gap">
+      <Masonry breakpoints={breakpoints}>
         {postElements}
       </Masonry>
       <SectionLoading isLoading={isLoading} />

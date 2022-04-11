@@ -36,10 +36,10 @@ function ImageText() {
   );
 
   // Effects
-  useEffect(() => scheduleSetPosts(), [scheduleSetPosts]);
+  useEffect(() => scheduleSetPosts(0), [scheduleSetPosts]);
 
   // Elements
-  const postElements = posts.map(post => {
+  const postElements = dynamicPosts.map(post => {
     return (
       <MasonryItem key={post.id}>
         <ItemImage post={post} />
