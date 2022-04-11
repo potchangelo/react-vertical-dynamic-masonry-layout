@@ -10,7 +10,6 @@ function MasonryNew(props) {
   // - Data
   const { children } = props;
   const [columnHeights, setColumnHeights] = useState([0]);
-  const [gap, setGap] = useState(0);
 
   // - Function
   function getNextBreakpoint() {
