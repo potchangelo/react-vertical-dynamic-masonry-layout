@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { HeaderNav, HeaderTabs } from './components';
 import { routes } from './helpers';
-import './Css/App.scss';
+import './css/app.scss';
 
 function App() {
   const routeElements = routes.map(route => {
