@@ -13,10 +13,10 @@
   "homepage": "https://react-vertical-dynamic-masonry-layout.netlify.app/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/potchangelo/react-pinterest-layout.git"
+    "url": "https://github.com/potchangelo/react-vertical-dynamic-masonry-layout.git"
   },
   "bugs": {
-    "url": "https://github.com/potchangelo/react-pinterest-layout.git/issues"
+    "url": "https://github.com/potchangelo/react-vertical-dynamic-masonry-layout.git/issues"
   },
   "license": "MIT",
   "eslintConfig": {
