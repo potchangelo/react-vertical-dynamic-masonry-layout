@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Masonry, MasonryItem } from '../layouts';
+import { Main, Masonry, MasonryItem } from '../layouts';
 import { ItemImage, ItemText, SectionLoadMore } from '../components';
 import { dynamicPosts } from '../helpers';
 
@@ -32,18 +32,18 @@ function _ImageTextAppend() {
     return (
       <MasonryItem key={post.id}>
         <ItemImage post={post} />
-        <ItemText post={post} extraClass="tb-space" />
+        <ItemText post={post} extraClass="pt-4 pb-4" />
       </MasonryItem>
     );
   });
 
   return (
-    <main className="main-content">
+    <Main>
        <Masonry breakpoints={breakpoints}>
         {postElements}
       </Masonry>
       <SectionLoadMore isShow={!isLoading} onLoadMoreClick={onLoadMoreClick} />
-    </main>
+    </Main>
   );
 }
 

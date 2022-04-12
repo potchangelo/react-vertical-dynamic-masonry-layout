@@ -1,4 +1,4 @@
-import { Masonry, MasonryItem } from '../layouts';
+import { Main, Masonry, MasonryItem } from '../layouts';
 import { ItemText } from '../components';
 import { dynamicPosts } from '../helpers';
 
@@ -16,11 +16,11 @@ function _Text() {
     </MasonryItem>
   ));
   return (
-    <main className="main-content">
+    <Main>
       <Masonry breakpoints={breakpoints}>
         {postElements}
       </Masonry>
-    </main>
+    </Main>
   );
 }
 

@@ -70,34 +70,3 @@
     border-bottom: 2px solid $black-bis;
   }
 }
-
-.main-content {
-  background-color: $white-bis;
-  min-height: calc(100vh - 70px - 64px);
-}
-
-.item__image-cover {
-  background-color: pink;
-  position: relative;
-
-  img {
-    display: block;
-    width: 100%;
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
-  }
-}
-
-.item__text-cover {
-  &.tb-space {
-    padding-top: 16px;
-    padding-bottom: 16px;
-  }
-
-  .title {
-    margin-bottom: 12px;
-  }
-}

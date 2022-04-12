@@ -1,12 +1,17 @@
 import React from 'react';
 
-function SampleImage(props) {
+/**
+ * @param {object} props
+ * @param {{ title: string, imgUrl: string, imgWidth: number, imgHeight: number }} props.post
+ * @param {string} [props.extraClass]
+ */
+function _ItemImage(props) {
   const {
     post: { title, imgUrl, imgWidth, imgHeight },
     extraClass,
   } = props;
 
-  let imageClass = 'item__image-cover';
+  let imageClass = 'is-relative has-background-danger-light';
   if (!!extraClass) imageClass += ` ${extraClass}`;
 
   const paddingBottom = (imgHeight / imgWidth) * 100;
@@ -14,9 +19,9 @@ function SampleImage(props) {
 
   return (
     <div className={imageClass} style={style}>
-      <img src={imgUrl} alt={title} />
+      <img className="is-block is-overlay" src={imgUrl} alt={title} />
     </div>
   );
 }
 
-export default SampleImage;
+export default _ItemImage;

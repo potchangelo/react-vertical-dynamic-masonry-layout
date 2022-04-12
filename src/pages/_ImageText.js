@@ -1,4 +1,4 @@
-import { Masonry, MasonryItem } from '../layouts';
+import { Main, Masonry, MasonryItem } from '../layouts';
 import { ItemImage, ItemText } from '../components';
 import { dynamicPosts } from '../helpers';
 
@@ -14,16 +14,16 @@ function _ImageText() {
     return (
       <MasonryItem key={post.id}>
         <ItemImage post={post} />
-        <ItemText post={post} extraClass="tb-space" />
+        <ItemText post={post} extraClass="pt-4 pb-4" />
       </MasonryItem>
     );
   });
   return (
-    <main className="main-content">
+    <Main>
       <Masonry breakpoints={breakpoints}>
         {postElements}
       </Masonry>
-    </main>
+    </Main>
   );
 }
 

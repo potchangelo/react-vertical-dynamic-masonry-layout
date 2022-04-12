@@ -1,4 +1,4 @@
-import { Masonry, MasonryItem } from '../layouts';
+import { Main, Masonry, MasonryItem } from '../layouts';
 import { ItemImage } from '../components';
 import { dynamicPosts } from '../helpers';
 
@@ -16,11 +16,11 @@ function _ImageNoGap() {
     </MasonryItem>
   ));
   return (
-    <main className="main-content">
+    <Main>
       <Masonry breakpoints={breakpoints}>
         {postElements}
       </Masonry>
-    </main>
+    </Main>
   );
 }
 

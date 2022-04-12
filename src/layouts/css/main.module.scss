@@ -1,0 +1,6 @@
+@import '../../css/vars.scss';
+
+.main {
+  background-color: $white-bis;
+  min-height: calc(100vh - 70px - 64px);
+}
