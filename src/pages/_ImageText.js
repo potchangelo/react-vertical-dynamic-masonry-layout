@@ -1,6 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
 import { Masonry, MasonryItem } from '../layouts';
-import { SectionLoading, ItemImage, ItemText } from '../components';
+import { ItemImage, ItemText } from '../components';
 import { dynamicPosts } from '../helpers';
 
 const breakpoints = [
@@ -11,34 +10,6 @@ const breakpoints = [
 ];
 
 function ImageText() {
-  // State
-  const [posts, setPosts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Functions
-  const getRandomPosts = useCallback(() => {
-    const arr = [...dynamicPosts];
-    for (let i = arr.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-  }, []);
-
-  const scheduleSetPosts = useCallback(
-    (delay = 1500) => {
-      setTimeout(() => {
-        setPosts(getRandomPosts());
-        setIsLoading(false);
-      }, delay);
-    },
-    [getRandomPosts]
-  );
-
-  // Effects
-  useEffect(() => scheduleSetPosts(0), [scheduleSetPosts]);
-
-  // Elements
   const postElements = dynamicPosts.map(post => {
     return (
       <MasonryItem key={post.id}>
@@ -47,33 +18,13 @@ function ImageText() {
       </MasonryItem>
     );
   });
-
-  // const postElements = posts.map(post => {
-  //   return (
-  //     <div key={uuidv4()}>
-  //       <ItemImage post={post} />
-  //       <ItemText post={post} extraClass="tb-space" />
-  //     </div>
-  //   );
-  // });
-
   return (
     <main className="main-content">
       <Masonry breakpoints={breakpoints}>
         {postElements}
       </Masonry>
-      <SectionLoading isLoading={isLoading} />
     </main>
   );
-
-  // return (
-  //   <main className="main-content">
-  //     <MasonryNew>
-  //       {postElements}
-  //     </MasonryNew>
-  //     <SectionLoading isLoading={isLoading} />
-  //   </main>
-  // );
 }
 
 export default ImageText;
