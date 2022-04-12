@@ -1,12 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
-import { ImageText, Image, Text, ImageNoGap, ImageTextAppend } from '../pages';
+import { PageImageText, PageImage, PageText, PageImageNoGap, PageImageTextAppend } from '../pages';
 
 const routes = [
-  { id: 'home', url: '/', title: 'Image text (Home)', component: <ImageText /> },
-  { id: 'position-image', url: 'image/', title: 'Image', component: <Image /> },
-  { id: 'position-text', url: 'text/', title: 'Text', component: <Text /> },
-  { id: 'position-image-no-gap', url: 'image-no-gap/', title: 'Image no gap', component: <ImageNoGap /> },
-  { id: 'position-image-text-append', url: 'image-text-append/', title: 'Image text with load more', component: <ImageTextAppend /> },
+  { id: 'home', url: '/', title: 'Image text (Home)', component: <PageImageText /> },
+  { id: 'position-image', url: 'image/', title: 'Image', component: <PageImage /> },
+  { id: 'position-text', url: 'text/', title: 'Text', component: <PageText /> },
+  { id: 'position-image-no-gap', url: 'image-no-gap/', title: 'Image no gap', component: <PageImageNoGap /> },
+  { id: 'position-image-text-append', url: 'image-text-append/', title: 'Image text with load more', component: <PageImageTextAppend /> },
 ];
 
 const dynamicPosts = [

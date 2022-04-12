@@ -1,5 +1,5 @@
-export { default as ImageText } from './_ImageText';
-export { default as Image } from './_Image';
-export { default as Text } from './_Text';
-export { default as ImageNoGap } from './_ImageNoGap';
-export { default as ImageTextAppend } from './_ImageTextAppend';
+export { default as PageImageText } from './_ImageText';
+export { default as PageImage } from './_Image';
+export { default as PageText } from './_Text';
+export { default as PageImageNoGap } from './_ImageNoGap';
+export { default as PageImageTextAppend } from './_ImageTextAppend';

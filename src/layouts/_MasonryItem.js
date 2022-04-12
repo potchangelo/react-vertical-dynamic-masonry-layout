@@ -1,6 +1,6 @@
 import style from './css/masonry.module.scss';
 
-function MasonryItem(props) {
+function _MasonryItem(props) {
   const { isLoading, itemStyles, children } = props;
 
   let itemClass = style.item;
@@ -15,4 +15,4 @@ function MasonryItem(props) {
   );
 }
 
-export default MasonryItem;
+export default _MasonryItem;

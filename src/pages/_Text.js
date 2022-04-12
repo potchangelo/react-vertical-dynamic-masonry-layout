@@ -9,7 +9,7 @@ const breakpoints = [
   { columns: 5, minWidth: 1600, gap: 16, outerGap: 24 },
 ];
 
-function Text() {
+function _Text() {
   const postElements = dynamicPosts.map(post => (
     <MasonryItem key={post.id}>
       <ItemText post={post} extraClass="box" />
@@ -24,4 +24,4 @@ function Text() {
   );
 }
 
-export default Text;
+export default _Text;

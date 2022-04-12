@@ -11,7 +11,7 @@ const breakpoints = [
   { columns: 5, minWidth: 1000, gap: 24, outerGap: [32, 24] },
 ];
 
-function ImageText() {
+function _ImageTextAppend() {
   const [posts, setPosts] = useState(dynamicPosts);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -47,4 +47,4 @@ function ImageText() {
   );
 }
 
-export default ImageText;
+export default _ImageTextAppend;

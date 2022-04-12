@@ -9,7 +9,7 @@ const breakpoints = [
   { columns: 5, minWidth: 1000, gap: 24, outerGap: [32, 24] },
 ];
 
-function ImageText() {
+function _ImageText() {
   const postElements = dynamicPosts.map(post => {
     return (
       <MasonryItem key={post.id}>
@@ -27,4 +27,4 @@ function ImageText() {
   );
 }
 
-export default ImageText;
+export default _ImageText;

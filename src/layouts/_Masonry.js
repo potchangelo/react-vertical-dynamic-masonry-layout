@@ -20,7 +20,7 @@ const defaultBreakpoints = [
  * @param {object} props
  * @param {breakpoint[]} props.breakpoints
  */
-function Masonry(props) {
+function _Masonry(props) {
   // - Data
   const { breakpoints = defaultBreakpoints, children } = props;
   const [columnsHeights, setColumnsHeights] = useState([]);
@@ -176,4 +176,4 @@ function Masonry(props) {
   );
 }
 
-export default Masonry;
+export default _Masonry;
