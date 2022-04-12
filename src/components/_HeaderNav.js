@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import style from './css/headerNav.module.scss';
 
-function HeaderNav() {
+function _HeaderNav() {
   return (
     <header className={style.main}>
       <Link className={style.link} to="/">
@@ -17,4 +17,4 @@ function HeaderNav() {
   );
 }
 
-export default HeaderNav;
+export default _HeaderNav;

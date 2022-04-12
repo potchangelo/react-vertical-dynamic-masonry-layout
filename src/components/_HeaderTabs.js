@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { routes } from '../helpers';
 import style from './css/headerTabs.module.scss';
 
-function HeaderTabs() {
+function _HeaderTabs() {
   function getNavClass(navLinkProps) {
     let navClass = style.item;
     if (navLinkProps.isActive) navClass += ` ${style.itemSelected}`;
@@ -30,4 +30,4 @@ function HeaderTabs() {
   );
 }
 
-export default HeaderTabs;
+export default _HeaderTabs;
