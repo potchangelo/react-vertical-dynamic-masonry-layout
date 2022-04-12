@@ -1,5 +1,7 @@
-# React Pinterest Layout by Zinglecode
+# React Vertical Dynamic Masonry Layout
 
-https://react-pinterest-layout.netlify.app/
+https://react-vertical-dynamic-masonry-layout.netlify.app/
 
-Pinterest layout, created by React.
+React vertical dynamic masonry layout examples by Zinglecode.
+
+Note: ทำขึ้นมาเพื่อการศึกษาทางการเขียนโปรแกรมเท่านั้น เนื้อหาบนเว็บไม่ใช่สินค้าหรือบริการที่มีอยู่จริง

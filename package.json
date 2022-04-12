@@ -1,15 +1,16 @@
 {
-  "name": "react-pinterest-layout",
-  "description": "React Pinterest layout by Zinglecode",
+  "name": "react-vertical-dynamic-masonry-layout",
+  "description": "React Vertical Dynamic Masonry Layout by Zinglecode",
   "keywords": [
     "pinterest",
+    "masonry",
     "layout",
     "react",
     "bulma"
   ],
   "version": "1.0.1",
   "author": "Potchara Puttawanchai",
-  "homepage": "https://react-pinterest-layout.netlify.app/",
+  "homepage": "https://react-vertical-dynamic-masonry-layout.netlify.app/",
   "repository": {
     "type": "git",
     "url": "https://github.com/potchangelo/react-pinterest-layout.git"

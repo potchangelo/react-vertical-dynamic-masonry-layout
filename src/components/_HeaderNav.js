@@ -9,7 +9,7 @@ function _HeaderNav() {
           <img className={style.logo} src="/images/logo-light-64.png" alt="zinglecode" />
         </div>
         <div>
-          <h1 className="title is-6">React Pinterest Layout</h1>
+          <h1 className="title is-6">VD-Masonry Layout</h1>
           <h3 className="subtitle is-7">by Zinglecode</h3>
         </div>
       </Link>
