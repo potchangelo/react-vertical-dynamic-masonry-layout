@@ -1,7 +1,7 @@
 @import '../../css/vars.scss';
 
 .main {
-  height: 56px;
+  height: 44px;
   position: relative;
   overflow: hidden;
 
@@ -44,9 +44,10 @@
 .item {
   color: $grey;
   border-bottom: 2px solid transparent;
+  font-size: 14px;
   font-weight: $weight-bold;
-  display: inline-block;
-  padding: 14px 0px;
+  display: inline-flex;
+  align-items: center;
   white-space: nowrap;
 
   &:not(:last-child) {

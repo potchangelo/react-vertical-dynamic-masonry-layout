@@ -9,7 +9,7 @@ function _ItemImage(props) {
     extraClass,
   } = props;
 
-  let imageClass = 'is-relative has-background-danger-light';
+  let imageClass = 'is-relative has-background-light';
   if (!!extraClass) imageClass += ` ${extraClass}`;
 
   const paddingBottom = (imgHeight / imgWidth) * 100;
