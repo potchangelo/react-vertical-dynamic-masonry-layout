@@ -6,7 +6,7 @@ function _HeaderNav() {
     <header className={style.main}>
       <Link className={style.link} to="/">
         <div>
-          <img className={style.logo} src="/image/logo-light-64.png" alt="zinglecode" />
+          <img className={style.logo} src="/images/logo-light-64.png" alt="zinglecode" />
         </div>
         <div>
           <h1 className="title is-6">React Pinterest Layout</h1>

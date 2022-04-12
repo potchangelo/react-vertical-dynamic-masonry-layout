@@ -1,19 +1,19 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Masonry",
+  "name": "React Vertical Masonry Layout",
   "icons": [
     {
-      "src": "image/favicon.png",
+      "src": "images/favicon.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "image/logo192.png",
+      "src": "images/logo-dark-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "image/logo512.png",
+      "src": "images/logo-dark-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
