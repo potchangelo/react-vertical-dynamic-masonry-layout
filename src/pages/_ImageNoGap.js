@@ -7,6 +7,7 @@ const breakpoints = [
   { columns: 3, minWidth: 500, gap: 0 },
   { columns: 4, minWidth: 750, gap: 0 },
   { columns: 5, minWidth: 1000, gap: 0 },
+  { columns: 6, minWidth: 1500, gap: 0 },
 ];
 
 function _ImageNoGap() {
