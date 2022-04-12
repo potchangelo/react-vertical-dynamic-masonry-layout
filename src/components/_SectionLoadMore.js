@@ -1,6 +1,14 @@
-import React from 'react';
+/**
+ * @callback generalCallback
+ */
 
-function SectionLoadMore({ isShow, onLoadMoreClick }) {
+/**
+ * @param {object} props
+ * @param {boolean} props.isShow
+ * @param {generalCallback} props.onLoadMoreClick
+ */
+function _SectionLoadMore(props) {
+  const { isShow, onLoadMoreClick } = props;
   if (!isShow) return null;
   return (
     <section className="section">
@@ -13,4 +21,4 @@ function SectionLoadMore({ isShow, onLoadMoreClick }) {
   );
 }
 
-export default SectionLoadMore;
+export default _SectionLoadMore;

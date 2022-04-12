@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * @param {object} props
  * @param {{ title: string, description: string }} props.post

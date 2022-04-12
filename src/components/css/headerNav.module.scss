@@ -1,0 +1,19 @@
+@import '../../css/vars.scss';
+
+.main {
+  border-bottom: 1px solid $grey-lighter;
+  display: flex;
+  height: 56px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  padding: 0px 12px;
+}
+
+.logo {
+  display: block;
+  height: 32px;
+  margin-right: 12px;
+}
