@@ -91,7 +91,7 @@ function _Masonry(props) {
   }, [getNextBreakpoint]);
 
   const restartLayout = useCallback(
-    (delay = 300) => {
+    (delay = 0) => {
       if (layoutStatusRef.current !== 'update') {
         layoutStatusRef.current = 'restart';
         setLayout(delay);
