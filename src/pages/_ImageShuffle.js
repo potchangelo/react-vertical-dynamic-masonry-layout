@@ -37,12 +37,20 @@ function _ImageShuffle() {
   ));
 
   return (
-    <Main>
-      <button onClick={_ => { shufflePosts() }}>Shuffle</button>
-      <Masonry breakpoints={breakpoints}>
-        {postElements}
-      </Masonry>
-    </Main>
+    <>
+      <Main>
+        <Masonry breakpoints={breakpoints}>
+          {postElements}
+        </Masonry>
+      </Main>
+      <button
+      className="button is-primary"
+      style={{ position: 'fixed', bottom: '12px', right: '12px', zIndex: 10000 }}
+      onClick={_ => { shufflePosts() }}
+      >
+        <b>Shuffle</b>
+      </button>
+    </>
   );
 }
 
