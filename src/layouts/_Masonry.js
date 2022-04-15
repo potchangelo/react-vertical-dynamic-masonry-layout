@@ -91,7 +91,7 @@ function _Masonry(props) {
   }, [getNextBreakpoint]);
 
   const restartLayout = useCallback(
-    (delay = 300) => {
+    (delay = 0) => {
       if (layoutStatusRef.current !== 'update') {
         layoutStatusRef.current = 'restart';
         setLayout(delay);
@@ -150,14 +150,14 @@ function _Masonry(props) {
     childElements = React.Children.map(children, (child, index) => {
       if (index < computedStyles.length) {
         const computedStyle = computedStyles[index];
-        const itemStyles = {
+        const itemStyle = {
           width: `${itemWidth}%`,
           padding: `${gap / 2}px`,
           ...computedStyle,
         };
         return React.cloneElement(child, {
           key: `masonry_item_${index}`,
-          itemStyles,
+          itemStyle,
         });
       }
       return React.cloneElement(child, {

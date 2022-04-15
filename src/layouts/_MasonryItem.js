@@ -1,7 +1,12 @@
 import style from './css/masonry.module.scss';
 
+/**
+ * @param {object} props
+ * @param {boolean} props.isLoading
+ * @param {import('react').CSSProperties} props.itemStyle
+ */
 function _MasonryItem(props) {
-  const { isLoading, itemStyles, children } = props;
+  const { isLoading, itemStyle, children } = props;
 
   let itemClass = style.item;
   if (!!isLoading) {
@@ -9,7 +14,7 @@ function _MasonryItem(props) {
   }
 
   return (
-    <div className={itemClass} style={itemStyles}>
+    <div className={itemClass} style={itemStyle}>
       <div>{children}</div>
     </div>
   );
