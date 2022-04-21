@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Main, Masonry, MasonryItem } from '../layouts';
 import { ItemImage, ItemText, SectionLoadMore } from '../components';
-import { dynamicPosts } from '../helpers';
+import { samplePhotos } from '../helpers';
 
 const breakpoints = [
   { columns: 2, minWidth: 0, gap: 12, outerGap: 16 },
@@ -12,13 +12,13 @@ const breakpoints = [
 ];
 
 function _ImageTextAppend() {
-  const [posts, setPosts] = useState(dynamicPosts);
+  const [photos, setPhotos] = useState(samplePhotos);
   const [isLoading, setIsLoading] = useState(false);
 
   function loadMore() {
-    setPosts(prevPosts => {
-      const clonedDynamicPosts = dynamicPosts.map(p => ({ ...p, id: uuidv4() }));
-      return [...prevPosts, ...clonedDynamicPosts];
+    setPhotos(prevPhotos => {
+      const clonedsamplePhotos = samplePhotos.map(p => ({ ...p, id: uuidv4() }));
+      return [...prevPhotos, ...clonedsamplePhotos];
     });
     setIsLoading(false);
   }
@@ -28,11 +28,11 @@ function _ImageTextAppend() {
     loadMore();
   }
 
-  const postElements = posts.map(post => {
+  const masonryItems = photos.map(photo => {
     return (
-      <MasonryItem key={post.id}>
-        <ItemImage post={post} />
-        <ItemText post={post} extraClass="pt-4 pb-4" />
+      <MasonryItem key={photo.id}>
+        <ItemImage photo={photo} />
+        <ItemText photo={photo} extraClass="pt-4 pb-4" />
       </MasonryItem>
     );
   });
@@ -40,7 +40,7 @@ function _ImageTextAppend() {
   return (
     <Main>
        <Masonry breakpoints={breakpoints}>
-        {postElements}
+        {masonryItems}
       </Masonry>
       <SectionLoadMore isShow={!isLoading} onLoadMoreClick={onLoadMoreClick} />
     </Main>

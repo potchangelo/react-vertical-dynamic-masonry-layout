@@ -1,6 +1,6 @@
 import { Main, Masonry, MasonryItem } from '../layouts';
 import { ItemImage } from '../components';
-import { dynamicPosts } from '../helpers';
+import { samplePhotos } from '../helpers';
 
 const breakpoints = [
   { columns: 2, minWidth: 0, gap: 12, outerGap: 16 },
@@ -10,15 +10,15 @@ const breakpoints = [
 ];
 
 function _Image() {
-  const postElements = dynamicPosts.map(post => (
-    <MasonryItem key={post.id}>
-      <ItemImage post={post} />
+  const masonryItems = samplePhotos.map(photo => (
+    <MasonryItem key={photo.id}>
+      <ItemImage photo={photo} />
     </MasonryItem>
   ));
   return (
     <Main>
       <Masonry breakpoints={breakpoints}>
-        {postElements}
+        {masonryItems}
       </Masonry>
     </Main>
   );

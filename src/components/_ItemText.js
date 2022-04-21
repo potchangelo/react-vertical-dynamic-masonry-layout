@@ -1,11 +1,11 @@
 /**
  * @param {object} props
- * @param {{ title: string, description: string }} props.post
+ * @param {{ title: string, description: string }} props.photo
  * @param {string} [props.extraClass]
  */
 function _ItemText(props) {
   const {
-    post: { title, description },
+    photo: { title, description },
     extraClass,
   } = props;
 
