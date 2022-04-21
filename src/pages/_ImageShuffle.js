@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Main, Masonry, MasonryItem } from '../layouts';
 import { ItemImage } from '../components';
-import { dynamicPosts } from '../helpers';
+import { samplePhotos } from '../helpers';
 
 const breakpoints = [
   { columns: 2, minWidth: 0, gap: 12, outerGap: 16 },
@@ -11,10 +11,10 @@ const breakpoints = [
 ];
 
 function _ImageShuffle() {
-  const [posts, setPosts] = useState(getShufflePosts());
+  const [photos, setPhotos] = useState(getShufflePhotos());
 
-  function getShufflePosts() {
-    const arr = [...dynamicPosts];
+  function getShufflePhotos() {
+    const arr = [...samplePhotos];
     for (let i = arr.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -22,17 +22,17 @@ function _ImageShuffle() {
     return arr;
   }
 
-  function shufflePosts() {
-    setPosts(getShufflePosts());
-    // setPosts([]);
+  function shufflePhotos() {
+    setPhotos(getShufflePhotos());
+    // setPhotos([]);
     // setTimeout(() => {
-    //   setPosts(getShufflePosts());
+    //   setPhotos(getShufflePhotos());
     // }, 300);
   }
 
-  const postElements = posts.map(post => (
-    <MasonryItem key={post.id}>
-      <ItemImage post={post} />
+  const masonryItems = photos.map(photo => (
+    <MasonryItem key={photo.id}>
+      <ItemImage photo={photo} />
     </MasonryItem>
   ));
 
@@ -40,13 +40,13 @@ function _ImageShuffle() {
     <>
       <Main>
         <Masonry breakpoints={breakpoints}>
-          {postElements}
+          {masonryItems}
         </Masonry>
       </Main>
       <button
       className="button is-primary"
       style={{ position: 'fixed', bottom: '12px', right: '12px', zIndex: 10000 }}
-      onClick={_ => { shufflePosts() }}
+      onClick={_ => { shufflePhotos() }}
       >
         <b>Shuffle</b>
       </button>
