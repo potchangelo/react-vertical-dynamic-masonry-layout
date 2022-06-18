@@ -8,7 +8,7 @@
     "react",
     "bulma"
   ],
-  "version": "2.0.3",
+  "version": "2.0.4",
   "author": "Potchara Puttawanchai",
   "homepage": "https://react-vertical-dynamic-masonry-layout.netlify.app/",
   "repository": {
