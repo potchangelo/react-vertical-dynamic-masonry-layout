@@ -45,50 +45,53 @@ function _Masonry(props) {
     return nextBreakpoint;
   }, [breakpoints]);
 
-  const setLayout = useCallback((delay = 150) => {
-    clearTimeout(layoutTimerRef.current);
-    if (layoutStatusRef.current === 'done') return;
+  const setLayout = useCallback(
+    (delay = 150) => {
+      clearTimeout(layoutTimerRef.current);
+      if (layoutStatusRef.current === 'done') return;
 
-    layoutTimerRef.current = setTimeout(() => {
-      const { columns } = getNextBreakpoint();
+      layoutTimerRef.current = setTimeout(() => {
+        const { columns } = getNextBreakpoint();
 
-      // Init heights array
-      let nextColumnsHeights = new Array(columns).fill().map(_ => 0);
+        // Init heights array
+        let nextColumnsHeights = new Array(columns).fill().map(_ => 0);
 
-      // Get masonry child nodes from its ref
-      const { childNodes } = layoutRef.current;
+        // Get masonry child nodes from its ref
+        const { childNodes } = layoutRef.current;
 
-      // Build masonry items data
-      const nextComputedStyles = Array.from(childNodes).map(child => {
-        // Left
-        let left = 0;
-        const minHeightIndex = nextColumnsHeights.indexOf(Math.min(...nextColumnsHeights));
-        left = (minHeightIndex / nextColumnsHeights.length) * 100;
+        // Build masonry items data
+        const nextComputedStyles = Array.from(childNodes).map(child => {
+          // Left
+          let left = 0;
+          const minHeightIndex = nextColumnsHeights.indexOf(Math.min(...nextColumnsHeights));
+          left = (minHeightIndex / nextColumnsHeights.length) * 100;
 
-        // Top
-        let top = 0;
-        const minHeight = Math.min(...nextColumnsHeights);
-        top = minHeight;
+          // Top
+          let top = 0;
+          const minHeight = Math.min(...nextColumnsHeights);
+          top = minHeight;
 
-        // Add height to selected column
-        nextColumnsHeights[minHeightIndex] += child.getBoundingClientRect().height;
+          // Add height to selected column
+          nextColumnsHeights[minHeightIndex] += child.getBoundingClientRect().height;
 
-        return { left: `${left}%`, top: `${top}px` };
-      });
-
-      if (layoutStatusRef.current === 'restart') layoutStatusRef.current = 'update';
-      else if (layoutStatusRef.current === 'update') layoutStatusRef.current = 'done';
-
-      setColumnsHeights(nextColumnsHeights);
-      setComputedStyles(prevComputedStyles => {
-        return nextComputedStyles.map((computedStyle, index) => {
-          const style = Object.assign({}, computedStyle);
-          if (index >= prevComputedStyles.length) style.opacity = 0;
-          return style;
+          return { left: `${left}%`, top: `${top}px` };
         });
-      });
-    }, delay);
-  }, [getNextBreakpoint]);
+
+        if (layoutStatusRef.current === 'restart') layoutStatusRef.current = 'update';
+        else if (layoutStatusRef.current === 'update') layoutStatusRef.current = 'done';
+
+        setColumnsHeights(nextColumnsHeights);
+        setComputedStyles(prevComputedStyles => {
+          return nextComputedStyles.map((computedStyle, index) => {
+            const style = Object.assign({}, computedStyle);
+            if (index >= prevComputedStyles.length) style.opacity = 0;
+            return style;
+          });
+        });
+      }, delay);
+    },
+    [getNextBreakpoint],
+  );
 
   const restartLayout = useCallback(
     (delay = 0) => {
@@ -97,7 +100,7 @@ function _Masonry(props) {
         setLayout(delay);
       }
     },
-    [setLayout]
+    [setLayout],
   );
 
   const updateLayout = useCallback(
@@ -106,7 +109,7 @@ function _Masonry(props) {
         setLayout(delay);
       }
     },
-    [setLayout]
+    [setLayout],
   );
 
   const onResize = useCallback(() => restartLayout(), [restartLayout]);
@@ -134,8 +137,8 @@ function _Masonry(props) {
   const itemWidth = 100 / (columnCount || 1);
   const { gap = 0, outerGap = 0 } = getNextBreakpoint();
   const containerStyle = {
-    padding: Array.isArray(outerGap) ? outerGap.map(g => `${g}px`).join(' ') : `${outerGap}px`
-  }
+    padding: Array.isArray(outerGap) ? outerGap.map(g => `${g}px`).join(' ') : `${outerGap}px`,
+  };
   const layoutHeight = columnCount === 0 ? 0 : Math.max(...columnsHeights);
   const layoutStyle = {
     height: `${layoutHeight}px`,

@@ -39,9 +39,7 @@ function _ImageTextAppend() {
 
   return (
     <Main>
-       <Masonry breakpoints={breakpoints}>
-        {masonryItems}
-      </Masonry>
+      <Masonry breakpoints={breakpoints}>{masonryItems}</Masonry>
       <SectionLoadMore isShow={!isLoading} onLoadMoreClick={onLoadMoreClick} />
     </Main>
   );

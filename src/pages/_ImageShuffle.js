@@ -39,14 +39,14 @@ function _ImageShuffle() {
   return (
     <>
       <Main>
-        <Masonry breakpoints={breakpoints}>
-          {masonryItems}
-        </Masonry>
+        <Masonry breakpoints={breakpoints}>{masonryItems}</Masonry>
       </Main>
       <button
-      className="button is-primary"
-      style={{ position: 'fixed', bottom: '12px', right: '12px', zIndex: 10000 }}
-      onClick={_ => { shufflePhotos() }}
+        className="button is-primary"
+        style={{ position: 'fixed', bottom: '12px', right: '12px', zIndex: 10000 }}
+        onClick={_ => {
+          shufflePhotos();
+        }}
       >
         <b>Shuffle</b>
       </button>
