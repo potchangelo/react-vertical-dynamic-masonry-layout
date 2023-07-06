@@ -22,9 +22,7 @@ function _HeaderTabs() {
     <header className={style.main}>
       <span className={style.border}></span>
       <div className={style.scrollArea}>
-        <div className={style.items}>
-          {tabElements}
-        </div>
+        <div className={style.items}>{tabElements}</div>
       </div>
     </header>
   );

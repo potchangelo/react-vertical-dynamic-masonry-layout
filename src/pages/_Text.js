@@ -17,9 +17,7 @@ function _Text() {
   ));
   return (
     <Main>
-      <Masonry breakpoints={breakpoints}>
-        {masonryItems}
-      </Masonry>
+      <Masonry breakpoints={breakpoints}>{masonryItems}</Masonry>
     </Main>
   );
 }

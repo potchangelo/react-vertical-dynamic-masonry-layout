@@ -7,7 +7,12 @@ const routes = [
   { id: 'text', url: 'text/', title: 'Text', component: <PageText /> },
   { id: 'image-no-gap', url: 'image-no-gap/', title: 'Image no gap', component: <PageImageNoGap /> },
   { id: 'image-shuffle', url: 'image-shuffle/', title: 'Image shuffle', component: <PageImageShuffle /> },
-  { id: 'image-text-append', url: 'image-text-append/', title: 'Image text with load more', component: <PageImageTextAppend /> },
+  {
+    id: 'image-text-append',
+    url: 'image-text-append/',
+    title: 'Image text with load more',
+    component: <PageImageTextAppend />,
+  },
 ];
 
 const samplePhotos = [
