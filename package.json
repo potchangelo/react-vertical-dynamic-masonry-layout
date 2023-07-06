@@ -51,6 +51,7 @@
     "web-vitals": "^3.3.2"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "prettier": "^3.0.0"
   },
   "scripts": {
