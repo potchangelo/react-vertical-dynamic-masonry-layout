@@ -1,6 +1,6 @@
 # React Vertical Dynamic Masonry Layout
 
-https://react-vertical-dynamic-masonry-layout.netlify.app/
+https://react-vd-masonry-layout.netlify.app/
 
 React vertical dynamic masonry layout examples by Zinglecode.
 
